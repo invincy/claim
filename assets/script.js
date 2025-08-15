@@ -87,6 +87,7 @@
         const durationText = document.getElementById('durationText');
         const suggestionBox = document.getElementById('suggestionBox');
         const suggestionText = document.getElementById('suggestionText');
+        const timeBarWarning = document.getElementById('timeBarWarning');
         const manualSelection = document.getElementById('manualSelection');
 
         // Auto-format date inputs
@@ -151,6 +152,28 @@
                 suggestionBox.className = `p-4 rounded-xl ${bgColor}`;
                 suggestionBox.classList.remove('hidden');
                 manualSelection.classList.remove('hidden');
+
+                // Time-bar check using current date as intimation
+                const today = new Date();
+                const intimationDiff = (today - deathDateObj) / (1000 * 60 * 60 * 24);
+                let timeBarMessage = '';
+                if (commDateObj < new Date(2020, 0, 1)) {
+                    if (intimationDiff > 365 * 3) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 3 years)';
+                    }
+                } else {
+                    if (intimationDiff > 90) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 90 days)';
+                    }
+                }
+
+                if (timeBarMessage) {
+                    timeBarWarning.textContent = timeBarMessage;
+                    timeBarWarning.classList.remove('hidden');
+                } else {
+                    timeBarWarning.textContent = '';
+                    timeBarWarning.classList.add('hidden');
+                }
             }
         }
 
@@ -805,8 +828,6 @@
             });
 
             const stage = getClaimStage();
-            
-            saveToStorage();
 
             if (existingRow) {
                 // Update existing row
@@ -843,6 +864,8 @@
                 row.onclick = function() { openCase(this); };
                 tableBody.appendChild(row);
             }
+
+            saveToStorage();
 
             alert('💾 Progress saved successfully!');
             deathClaimForm.classList.add('hidden');
