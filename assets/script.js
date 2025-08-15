@@ -90,12 +90,14 @@
         const timeBarWarning = document.getElementById('timeBarWarning');
         const manualSelection = document.getElementById('manualSelection');
 
+
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
             toast.classList.remove('hidden');
             setTimeout(() => toast.classList.add('hidden'), 3000);
         }
+
 
         // Auto-format date inputs
         function formatDateInput(input) {
@@ -872,7 +874,11 @@
 
             saveToStorage();
 
+
             showToast('💾 Progress saved successfully!');
+
+            alert('💾 Progress saved successfully!');
+
             deathClaimForm.classList.add('hidden');
             resetForm();
         });
