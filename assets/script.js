@@ -87,7 +87,15 @@
         const durationText = document.getElementById('durationText');
         const suggestionBox = document.getElementById('suggestionBox');
         const suggestionText = document.getElementById('suggestionText');
+        const timeBarWarning = document.getElementById('timeBarWarning');
         const manualSelection = document.getElementById('manualSelection');
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
 
         // Auto-format date inputs
         function formatDateInput(input) {
@@ -151,6 +159,28 @@
                 suggestionBox.className = `p-4 rounded-xl ${bgColor}`;
                 suggestionBox.classList.remove('hidden');
                 manualSelection.classList.remove('hidden');
+
+                // Time-bar check using current date as intimation
+                const today = new Date();
+                const intimationDiff = (today - deathDateObj) / (1000 * 60 * 60 * 24);
+                let timeBarMessage = '';
+                if (commDateObj < new Date(2020, 0, 1)) {
+                    if (intimationDiff > 365 * 3) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 3 years)';
+                    }
+                } else {
+                    if (intimationDiff > 90) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 90 days)';
+                    }
+                }
+
+                if (timeBarMessage) {
+                    timeBarWarning.textContent = timeBarMessage;
+                    timeBarWarning.classList.remove('hidden');
+                } else {
+                    timeBarWarning.textContent = '';
+                    timeBarWarning.classList.add('hidden');
+                }
             }
         }
 
@@ -242,7 +272,7 @@
             const resolved = document.getElementById('specialResolved').checked;
 
             if (!policyNo || !name || !type || !issue) {
-                alert('Please fill all fields.');
+                showToast('Please fill all fields.');
                 return;
             }
 
@@ -283,7 +313,7 @@
                 }
 
                 saveToStorage();
-                alert('Special case marked as resolved and moved to completed cases!');
+                showToast('Special case marked as resolved and moved to completed cases!');
             } else {
                 // Save to active special cases
                 const tableBody = document.getElementById('activeSpecialCasesTable');
@@ -346,7 +376,7 @@
                     tableBody.appendChild(row);
                 }
 
-                alert('Special case saved successfully!');
+                showToast('Special case saved successfully!');
             }
 
             specialCaseForm.classList.add('hidden');
@@ -417,7 +447,6 @@
                 });
             }
             
-            alert(`📂 Opening case: ${policyNo} - ${name}`);
         }
 
         function removeSpecialRow(button) {
@@ -457,7 +486,6 @@
                 document.getElementById('specialResolved').checked = false;
             }
             
-            alert(`Opening special case: ${policyNo} - ${name}`);
         }
 
         function resetSpecialForm() {
@@ -750,7 +778,7 @@
                     }
 
                     saveToStorage();
-                    alert('Claim completed and moved to completed claims!');
+                    showToast('Claim completed and moved to completed claims!');
                     deathClaimForm.classList.add('hidden');
                     resetForm();
                 }
@@ -764,7 +792,7 @@
             const selectedType = document.querySelector('input[name="claimType"]:checked');
 
             if (!policyNo || !name || !selectedType) {
-                alert('⚠️ Please fill basic claim information first.');
+                showToast('⚠️ Please fill basic claim information first.');
                 return;
             }
 
@@ -805,8 +833,6 @@
             });
 
             const stage = getClaimStage();
-            
-            saveToStorage();
 
             if (existingRow) {
                 // Update existing row
@@ -844,7 +870,9 @@
                 tableBody.appendChild(row);
             }
 
-            alert('💾 Progress saved successfully!');
+            saveToStorage();
+
+            showToast('💾 Progress saved successfully!');
             deathClaimForm.classList.add('hidden');
             resetForm();
         });
