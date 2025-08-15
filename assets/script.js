@@ -90,6 +90,15 @@
         const timeBarWarning = document.getElementById('timeBarWarning');
         const manualSelection = document.getElementById('manualSelection');
 
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+
         // Auto-format date inputs
         function formatDateInput(input) {
             let value = input.value.replace(/\D/g, ''); // Remove non-digits
@@ -265,7 +274,7 @@
             const resolved = document.getElementById('specialResolved').checked;
 
             if (!policyNo || !name || !type || !issue) {
-                alert('Please fill all fields.');
+                showToast('Please fill all fields.');
                 return;
             }
 
@@ -306,7 +315,7 @@
                 }
 
                 saveToStorage();
-                alert('Special case marked as resolved and moved to completed cases!');
+                showToast('Special case marked as resolved and moved to completed cases!');
             } else {
                 // Save to active special cases
                 const tableBody = document.getElementById('activeSpecialCasesTable');
@@ -369,7 +378,7 @@
                     tableBody.appendChild(row);
                 }
 
-                alert('Special case saved successfully!');
+                showToast('Special case saved successfully!');
             }
 
             specialCaseForm.classList.add('hidden');
@@ -440,7 +449,6 @@
                 });
             }
             
-            alert(`📂 Opening case: ${policyNo} - ${name}`);
         }
 
         function removeSpecialRow(button) {
@@ -480,7 +488,6 @@
                 document.getElementById('specialResolved').checked = false;
             }
             
-            alert(`Opening special case: ${policyNo} - ${name}`);
         }
 
         function resetSpecialForm() {
@@ -773,7 +780,7 @@
                     }
 
                     saveToStorage();
-                    alert('Claim completed and moved to completed claims!');
+                    showToast('Claim completed and moved to completed claims!');
                     deathClaimForm.classList.add('hidden');
                     resetForm();
                 }
@@ -787,7 +794,7 @@
             const selectedType = document.querySelector('input[name="claimType"]:checked');
 
             if (!policyNo || !name || !selectedType) {
-                alert('⚠️ Please fill basic claim information first.');
+                showToast('⚠️ Please fill basic claim information first.');
                 return;
             }
 
@@ -867,7 +874,11 @@
 
             saveToStorage();
 
+
+            showToast('💾 Progress saved successfully!');
+
             alert('💾 Progress saved successfully!');
+
             deathClaimForm.classList.add('hidden');
             resetForm();
         });

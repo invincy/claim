@@ -224,15 +224,15 @@
                         <div class="p-6 pt-0 space-y-4">
                             <div class="space-y-3">
                                 <label class="option-card flex items-center p-4 rounded-xl">
-                                    <input type="radio" name="investigationType" value="ABM(s)" class="radio-modern mr-4">
+                                    <input type="radio" id="investigationABM" name="investigationType" value="ABM(s)" class="radio-modern mr-4">
                                     <span class="font-semibold text-gray-300">👨‍💼 ABM(s)</span>
                                 </label>
                                 <label class="option-card flex items-center p-4 rounded-xl">
-                                    <input type="radio" name="investigationType" value="Sr. B.M." class="radio-modern mr-4">
+                                    <input type="radio" id="investigationSrBM" name="investigationType" value="Sr. B.M." class="radio-modern mr-4">
                                     <span class="font-semibold text-gray-300">👔 Sr. B.M.</span>
                                 </label>
                                 <label class="option-card flex items-center p-4 rounded-xl">
-                                    <input type="radio" name="investigationType" value="D.O." class="radio-modern mr-4">
+                                    <input type="radio" id="investigationDO" name="investigationType" value="D.O." class="radio-modern mr-4">
                                     <span class="font-semibold text-gray-300">🏛️ D.O.</span>
                                 </label>
                             </div>
@@ -443,6 +443,7 @@
         </div>
     </div>
 
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg hidden"></div>
     <script src="assets/script.js" defer></script>
 </body>
 </html>
