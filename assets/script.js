@@ -102,6 +102,7 @@
         });
 
         // Form functionality
+
         const deathClaimBtn = document.getElementById('deathClaimBtn');
         const specialCaseBtn = document.getElementById('specialCaseBtn');
         const deathClaimForm = document.getElementById('deathClaimForm');
