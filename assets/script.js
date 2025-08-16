@@ -67,19 +67,6 @@
 
         // Initialize particles when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            const themeStylesheet = document.getElementById('themeStylesheet');
-            const themeToggle = document.getElementById('themeToggle');
-
-            const savedTheme = localStorage.getItem('theme') || 'mono';
-            themeStylesheet.setAttribute('href', savedTheme === 'neon' ? 'assets/neon.css' : 'assets/style.css');
-
-            themeToggle.addEventListener('click', () => {
-                const current = themeStylesheet.getAttribute('href').includes('neon') ? 'neon' : 'mono';
-                const next = current === 'neon' ? 'mono' : 'neon';
-                themeStylesheet.setAttribute('href', next === 'neon' ? 'assets/neon.css' : 'assets/style.css');
-                localStorage.setItem('theme', next);
-            });
-
             const { container, particles } = createParticles();
             createConnections(container, particles);
             loadFromStorage();
@@ -149,22 +136,6 @@
         const suggestionText = document.getElementById('suggestionText');
         const timeBarWarning = document.getElementById('timeBarWarning');
         const manualSelection = document.getElementById('manualSelection');
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 3000);
-        }
-
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 3000);
-        }
-
 
         function showToast(message) {
             const toast = document.getElementById('toast');
@@ -265,29 +236,6 @@
 
 
 
-                // Time-bar check using current date as intimation
-                const today = new Date();
-                const intimationDiff = (today - deathDateObj) / (1000 * 60 * 60 * 24);
-                let timeBarMessage = '';
-                if (commDateObj < new Date(2020, 0, 1)) {
-                    if (intimationDiff > 365 * 3) {
-                        timeBarMessage = '⚠️ Claim is time barred (death reported after 3 years)';
-                    }
-                } else {
-                    if (intimationDiff > 90) {
-                        timeBarMessage = '⚠️ Claim is time barred (death reported after 90 days)';
-                    }
-                }
-
-                if (timeBarMessage) {
-                    timeBarWarning.textContent = timeBarMessage;
-                    timeBarWarning.classList.remove('hidden');
-                } else {
-                    timeBarWarning.textContent = '';
-                    timeBarWarning.classList.add('hidden');
-                }
-            }
-        }
 
         function removeRow(button) {
             const row = button.closest('tr');
@@ -1050,6 +998,4 @@
             daysSinceSent.classList.add('hidden');
             doDecisionSection.classList.add('hidden');
         }
-
-(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96fbbb47543f45ed',t:'MTc1NTI5Mjc4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
 
