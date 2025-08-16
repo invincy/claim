@@ -57,10 +57,10 @@
             z-index: 1;
             width: 2px;
             height: 2px;
-            background: rgba(255, 245, 157, 0.6);
+            background: rgba(100, 200, 255, 0.6);
             border-radius: 50%;
             animation: float 6s infinite linear;
-            box-shadow: 0 0 6px rgba(255, 245, 157, 0.8);
+            box-shadow: 0 0 6px rgba(100, 200, 255, 0.8);
         }
 
 
@@ -86,20 +86,20 @@
 
         .particle:nth-child(2n) {
             animation-duration: 8s;
-            background: rgba(255, 245, 157, 0.4);
-            box-shadow: 0 0 4px rgba(255, 245, 157, 0.6);
+            background: rgba(100, 200, 255, 0.4);
+            box-shadow: 0 0 4px rgba(100, 200, 255, 0.6);
         }
 
         .particle:nth-child(3n) {
             animation-duration: 10s;
-            background: rgba(255, 245, 157, 0.3);
-            box-shadow: 0 0 3px rgba(255, 245, 157, 0.5);
+            background: rgba(0, 150, 255, 0.3);
+            box-shadow: 0 0 3px rgba(0, 150, 255, 0.5);
         }
 
         .particle-lines line {
-            stroke: rgba(255, 245, 157, 0.2);
+            stroke: rgba(100, 200, 255, 0.2);
             stroke-width: 1;
-            filter: drop-shadow(0 0 4px rgba(255, 245, 157, 0.4));
+            filter: drop-shadow(0 0 4px rgba(100, 200, 255, 0.4));
         }
         
         .matte-card {
@@ -461,31 +461,31 @@
         .text-orange-300,
         .text-teal-300,
         .text-purple-300 {
-            color: #ffe38f !important;
-            text-shadow: 0 0 5px rgba(255, 227, 143, 0.8), 0 0 10px rgba(255, 184, 28, 0.6);
+            color: #cfe8ff !important;
+            text-shadow: 0 0 5px rgba(173, 216, 255, 0.8), 0 0 10px rgba(100, 150, 255, 0.6);
         }
 
         .glow-text {
-            color: #ffe38f;
+            color: #cfe8ff;
             text-shadow:
-                0 0 10px rgba(255, 227, 143, 0.8),
-                0 0 20px rgba(255, 184, 28, 0.6),
-                0 0 30px rgba(255, 184, 28, 0.4);
+                0 0 10px rgba(173, 216, 255, 0.8),
+                0 0 20px rgba(100, 150, 255, 0.6),
+                0 0 30px rgba(100, 150, 255, 0.4);
             animation: textGlow 2s ease-in-out infinite alternate;
         }
 
         @keyframes textGlow {
             0% {
                 text-shadow:
-                    0 0 10px rgba(255, 227, 143, 0.8),
-                    0 0 20px rgba(255, 184, 28, 0.6),
-                    0 0 30px rgba(255, 184, 28, 0.4);
+                    0 0 10px rgba(173, 216, 255, 0.8),
+                    0 0 20px rgba(100, 150, 255, 0.6),
+                    0 0 30px rgba(100, 150, 255, 0.4);
             }
             100% {
                 text-shadow:
-                    0 0 15px rgba(255, 227, 143, 1),
-                    0 0 25px rgba(255, 184, 28, 0.8),
-                    0 0 35px rgba(255, 184, 28, 0.6);
+                    0 0 15px rgba(173, 216, 255, 1),
+                    0 0 25px rgba(100, 150, 255, 0.8),
+                    0 0 35px rgba(100, 150, 255, 0.6);
             }
         }
         
@@ -496,9 +496,9 @@
 
         @keyframes pulse-glow {
             from {
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+                box-shadow: 0 0 20px rgba(64, 127, 255, 0.2);
             }
             to {
-                box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+                box-shadow: 0 0 30px rgba(64, 127, 255, 0.4);
             }
         }
