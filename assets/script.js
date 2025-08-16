@@ -67,19 +67,6 @@
 
         // Initialize particles when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            const themeStylesheet = document.getElementById('themeStylesheet');
-            const themeToggle = document.getElementById('themeToggle');
-
-            const savedTheme = localStorage.getItem('theme') || 'mono';
-            themeStylesheet.setAttribute('href', savedTheme === 'neon' ? 'assets/neon.css' : 'assets/style.css');
-
-            themeToggle.addEventListener('click', () => {
-                const current = themeStylesheet.getAttribute('href').includes('neon') ? 'neon' : 'mono';
-                const next = current === 'neon' ? 'mono' : 'neon';
-                themeStylesheet.setAttribute('href', next === 'neon' ? 'assets/neon.css' : 'assets/style.css');
-                localStorage.setItem('theme', next);
-            });
-
             const { container, particles } = createParticles();
             createConnections(container, particles);
             loadFromStorage();
