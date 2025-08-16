@@ -1,4 +1,10 @@
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
         .dark-bg {
             background: radial-gradient(ellipse at center, #fff9c4 0%, #fbc02d 100%);
             min-height: 100vh;
@@ -23,6 +29,7 @@
 
 
 
+
         .particles {
             position: fixed;
             top: 0;
@@ -41,7 +48,6 @@
             height: 100%;
         }
 
-
         .particle {
             position: absolute;
             z-index: 1;
@@ -52,6 +58,7 @@
             animation: float 6s infinite linear;
             box-shadow: 0 0 6px rgba(255, 245, 157, 0.8);
         }
+
 
 
 
@@ -71,7 +78,6 @@
                 opacity: 0;
             }
         }
-
 
         .particle:nth-child(2n) {
             animation-duration: 8s;
@@ -164,6 +170,7 @@
         }
 
 
+
         @keyframes borderGlow {
             0% {
                 opacity: 0.5;
@@ -175,14 +182,13 @@
             }
         }
         
-
         .btn-primary {
+            --btn-glow: rgba(245, 158, 11, 0.5);
             background: rgba(17, 24, 39, 0.8);
             color: #f8f9fa;
             border: 1px solid rgba(245, 158, 11, 0.6);
             transition: all 0.3s ease;
-            box-shadow:
-                0 0 15px rgba(245, 158, 11, 0.3);
+            box-shadow: 0 0 15px var(--btn-glow);
             backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
@@ -190,59 +196,51 @@
         .btn-primary:hover {
             background: rgba(17, 24, 39, 0.9);
             border-color: rgba(245, 158, 11, 0.9);
-            box-shadow:
-                0 0 25px rgba(245, 158, 11, 0.5);
+            animation: btnPulse 1.5s ease-in-out infinite alternate;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .btn-danger {
+            --btn-glow: rgba(239, 68, 68, 0.5);
             background: rgba(17, 24, 39, 0.8);
             color: #f8f9fa;
             border: 1px solid rgba(239, 68, 68, 0.6);
             transition: all 0.3s ease;
-            box-shadow:
-                0 0 15px rgba(239, 68, 68, 0.3);
+            box-shadow: 0 0 15px var(--btn-glow);
             backdrop-filter: blur(15px);
         }
         .btn-danger:hover {
             background: rgba(17, 24, 39, 0.9);
             border-color: rgba(239, 68, 68, 0.9);
-            box-shadow:
-                0 0 25px rgba(239, 68, 68, 0.5);
+            animation: btnPulse 1.5s ease-in-out infinite alternate;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
-        .btn-success {
-            background: rgba(17, 24, 39, 0.8);
-            color: #f8f9fa;
-            border: 1px solid rgba(6, 182, 212, 0.6);
-            transition: all 0.3s ease;
-            box-shadow:
-                0 0 15px rgba(6, 182, 212, 0.3);
-            backdrop-filter: blur(15px);
-        }
-        .btn-success:hover {
-            background: rgba(17, 24, 39, 0.9);
-            border-color: rgba(6, 182, 212, 0.9);
-            box-shadow:
-                0 0 25px rgba(6, 182, 212, 0.5);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
 
         .btn-ghost {
+            --btn-glow: rgba(255, 227, 143, 0.3);
             background: rgba(17, 24, 39, 0.5);
             color: #f8f9fa;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             backdrop-filter: blur(15px);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 15px var(--btn-glow);
         }
         .btn-ghost:hover {
             background: rgba(17, 24, 39, 0.7);
             border-color: rgba(255, 255, 255, 0.2);
             color: #f8f9fa;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            animation: btnPulse 1.5s ease-in-out infinite alternate;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes btnPulse {
+            from {
+                box-shadow: 0 0 15px var(--btn-glow);
+            }
+            to {
+                box-shadow: 0 0 30px var(--btn-glow);
+            }
         }
         
         .dark-input {
@@ -315,7 +313,6 @@
             max-height: 1000px;
         }
         
-
         .suggestion-early {
             background: rgba(45, 7, 7, 0.6);
             border: 1px solid rgba(239, 68, 68, 0.6);
@@ -374,7 +371,6 @@
         .radio-modern:checked {
             border-color: #6366f1;
         }
-
         .radio-modern:checked::after {
             content: '';
             position: absolute;
@@ -431,7 +427,6 @@
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
-
         .section-header:hover {
             background: rgba(17, 24, 39, 0.9);
         }
@@ -455,35 +450,34 @@
         .text-orange-300,
         .text-teal-300,
         .text-purple-300 {
-            color: #f8f9fa !important;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
+            color: #ffe38f !important;
+            text-shadow: 0 0 5px rgba(255, 227, 143, 0.8), 0 0 10px rgba(255, 184, 28, 0.6);
         }
 
         .glow-text {
-            color: #f8f9fa;
+            color: #ffe38f;
             text-shadow:
-                0 0 10px rgba(255, 255, 255, 0.8),
-                0 0 20px rgba(255, 255, 255, 0.6),
-                0 0 30px rgba(255, 255, 255, 0.4);
+                0 0 10px rgba(255, 227, 143, 0.8),
+                0 0 20px rgba(255, 184, 28, 0.6),
+                0 0 30px rgba(255, 184, 28, 0.4);
             animation: textGlow 2s ease-in-out infinite alternate;
         }
 
         @keyframes textGlow {
             0% {
                 text-shadow:
-                    0 0 10px rgba(255, 255, 255, 0.8),
-                    0 0 20px rgba(255, 255, 255, 0.6),
-                    0 0 30px rgba(255, 255, 255, 0.4);
+                    0 0 10px rgba(255, 227, 143, 0.8),
+                    0 0 20px rgba(255, 184, 28, 0.6),
+                    0 0 30px rgba(255, 184, 28, 0.4);
             }
             100% {
                 text-shadow:
-                    0 0 15px rgba(255, 255, 255, 1),
-                    0 0 25px rgba(255, 255, 255, 0.8),
-                    0 0 35px rgba(255, 255, 255, 0.6);
+                    0 0 15px rgba(255, 227, 143, 1),
+                    0 0 25px rgba(255, 184, 28, 0.8),
+                    0 0 35px rgba(255, 184, 28, 0.6);
             }
         }
 
-        
         .pulse-glow {
             animation: pulse-glow 2s ease-in-out infinite alternate;
         }

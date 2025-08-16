@@ -77,6 +77,7 @@
 
 
 
+
         // Collapsible functionality
         document.querySelectorAll('.collapsible-header').forEach(header => {
             header.addEventListener('click', function() {
@@ -171,6 +172,7 @@
             formatDateInput(this);
             calculateDuration();
         });
+
 
 
 
@@ -316,7 +318,6 @@
 
 
         }
-
 
 
 
@@ -865,6 +866,7 @@
         });
 
         // Save progress functionality
+
         document.getElementById('saveProgress')?.addEventListener('click', function() {
 
             const policyNo = document.getElementById('policyNumber').value;
