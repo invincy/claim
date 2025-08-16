@@ -78,6 +78,7 @@
 
 
 
+
         // Collapsible functionality
         document.querySelectorAll('.collapsible-header').forEach(header => {
             header.addEventListener('click', function() {
@@ -106,7 +107,6 @@
         });
 
         // Form functionality
-
         const deathClaimBtn = document.getElementById('deathClaimBtn');
         const specialCaseBtn = document.getElementById('specialCaseBtn');
         const deathClaimForm = document.getElementById('deathClaimForm');
@@ -163,6 +163,7 @@
             input.value = value;
         }
 
+
         commencementDate?.addEventListener('input', function() {
             formatDateInput(this);
             calculateDuration();
@@ -172,6 +173,7 @@
             formatDateInput(this);
             calculateDuration();
         });
+
 
 
 
@@ -318,6 +320,7 @@
 
 
         }
+
 
 
 
@@ -618,7 +621,6 @@
         });
 
         // Investigation received completion tracking
-
         document.getElementById('investigationReceived')?.addEventListener('change', function() {
 
             checkSectionCompletion('investigation');
@@ -647,7 +649,6 @@
         });
 
         // D.O. sent date calculation
-
         doSentDate?.addEventListener('change', function() {
 
             if (this.value) {
