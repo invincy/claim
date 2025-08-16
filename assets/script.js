@@ -2,28 +2,85 @@
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
-            
+            const particles = [];
+
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
+
                 // Random starting position
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 6 + 's';
                 particle.style.animationDuration = (6 + Math.random() * 4) + 's';
-                
+
                 // Random size variation
                 const size = 1 + Math.random() * 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
-                
+
                 particlesContainer.appendChild(particle);
+                particles.push(particle);
             }
+
+            return { container: particlesContainer, particles };
         }
-        
+
+        function createConnections(container, particles) {
+            const svg = document.getElementById('particleLines');
+            const connections = [];
+            const clusterCount = 5;
+
+            for (let i = 0; i < clusterCount; i++) {
+                const clusterSize = Math.random() < 0.5 ? 2 : 3;
+                const indices = [];
+                while (indices.length < clusterSize) {
+                    const idx = Math.floor(Math.random() * particles.length);
+                    if (!indices.includes(idx)) indices.push(idx);
+                }
+                for (let j = 0; j < clusterSize - 1; j++) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    svg.appendChild(line);
+                    connections.push({ a: particles[indices[j]], b: particles[indices[j + 1]], line });
+                }
+            }
+
+            function updateLines() {
+                const rect = container.getBoundingClientRect();
+                connections.forEach(conn => {
+                    const rectA = conn.a.getBoundingClientRect();
+                    const rectB = conn.b.getBoundingClientRect();
+                    const x1 = rectA.left + rectA.width / 2 - rect.left;
+                    const y1 = rectA.top + rectA.height / 2 - rect.top;
+                    const x2 = rectB.left + rectB.width / 2 - rect.left;
+                    const y2 = rectB.top + rectB.height / 2 - rect.top;
+                    conn.line.setAttribute('x1', x1);
+                    conn.line.setAttribute('y1', y1);
+                    conn.line.setAttribute('x2', x2);
+                    conn.line.setAttribute('y2', y2);
+                });
+                requestAnimationFrame(updateLines);
+            }
+
+            requestAnimationFrame(updateLines);
+        }
+
         // Initialize particles when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
+            const themeStylesheet = document.getElementById('themeStylesheet');
+            const themeToggle = document.getElementById('themeToggle');
+
+            const savedTheme = localStorage.getItem('theme') || 'mono';
+            themeStylesheet.setAttribute('href', savedTheme === 'neon' ? 'assets/neon.css' : 'assets/style.css');
+
+            themeToggle.addEventListener('click', () => {
+                const current = themeStylesheet.getAttribute('href').includes('neon') ? 'neon' : 'mono';
+                const next = current === 'neon' ? 'mono' : 'neon';
+                themeStylesheet.setAttribute('href', next === 'neon' ? 'assets/neon.css' : 'assets/style.css');
+                localStorage.setItem('theme', next);
+            });
+
+            const { container, particles } = createParticles();
+            createConnections(container, particles);
             loadFromStorage();
             updateCounters();
         });
@@ -87,7 +144,15 @@
         const durationText = document.getElementById('durationText');
         const suggestionBox = document.getElementById('suggestionBox');
         const suggestionText = document.getElementById('suggestionText');
+        const timeBarWarning = document.getElementById('timeBarWarning');
         const manualSelection = document.getElementById('manualSelection');
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
 
         // Auto-format date inputs
         function formatDateInput(input) {
@@ -151,6 +216,28 @@
                 suggestionBox.className = `p-4 rounded-xl ${bgColor}`;
                 suggestionBox.classList.remove('hidden');
                 manualSelection.classList.remove('hidden');
+
+                // Time-bar check using current date as intimation
+                const today = new Date();
+                const intimationDiff = (today - deathDateObj) / (1000 * 60 * 60 * 24);
+                let timeBarMessage = '';
+                if (commDateObj < new Date(2020, 0, 1)) {
+                    if (intimationDiff > 365 * 3) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 3 years)';
+                    }
+                } else {
+                    if (intimationDiff > 90) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 90 days)';
+                    }
+                }
+
+                if (timeBarMessage) {
+                    timeBarWarning.textContent = timeBarMessage;
+                    timeBarWarning.classList.remove('hidden');
+                } else {
+                    timeBarWarning.textContent = '';
+                    timeBarWarning.classList.add('hidden');
+                }
             }
         }
 
@@ -242,7 +329,7 @@
             const resolved = document.getElementById('specialResolved').checked;
 
             if (!policyNo || !name || !type || !issue) {
-                alert('Please fill all fields.');
+                showToast('Please fill all fields.');
                 return;
             }
 
@@ -283,7 +370,7 @@
                 }
 
                 saveToStorage();
-                alert('Special case marked as resolved and moved to completed cases!');
+                showToast('Special case marked as resolved and moved to completed cases!');
             } else {
                 // Save to active special cases
                 const tableBody = document.getElementById('activeSpecialCasesTable');
@@ -346,7 +433,7 @@
                     tableBody.appendChild(row);
                 }
 
-                alert('Special case saved successfully!');
+                showToast('Special case saved successfully!');
             }
 
             specialCaseForm.classList.add('hidden');
@@ -417,7 +504,6 @@
                 });
             }
             
-            alert(`📂 Opening case: ${policyNo} - ${name}`);
         }
 
         function removeSpecialRow(button) {
@@ -457,7 +543,6 @@
                 document.getElementById('specialResolved').checked = false;
             }
             
-            alert(`Opening special case: ${policyNo} - ${name}`);
         }
 
         function resetSpecialForm() {
@@ -750,7 +835,7 @@
                     }
 
                     saveToStorage();
-                    alert('Claim completed and moved to completed claims!');
+                    showToast('Claim completed and moved to completed claims!');
                     deathClaimForm.classList.add('hidden');
                     resetForm();
                 }
@@ -764,7 +849,7 @@
             const selectedType = document.querySelector('input[name="claimType"]:checked');
 
             if (!policyNo || !name || !selectedType) {
-                alert('⚠️ Please fill basic claim information first.');
+                showToast('⚠️ Please fill basic claim information first.');
                 return;
             }
 
@@ -805,8 +890,6 @@
             });
 
             const stage = getClaimStage();
-            
-            saveToStorage();
 
             if (existingRow) {
                 // Update existing row
@@ -844,7 +927,9 @@
                 tableBody.appendChild(row);
             }
 
-            alert('💾 Progress saved successfully!');
+            saveToStorage();
+
+            showToast('💾 Progress saved successfully!');
             deathClaimForm.classList.add('hidden');
             resetForm();
         });
