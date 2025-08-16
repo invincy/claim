@@ -67,19 +67,6 @@
 
         // Initialize particles when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            const themeStylesheet = document.getElementById('themeStylesheet');
-            const themeToggle = document.getElementById('themeToggle');
-
-            const savedTheme = localStorage.getItem('theme') || 'mono';
-            themeStylesheet.setAttribute('href', savedTheme === 'neon' ? 'assets/neon.css' : 'assets/style.css');
-
-            themeToggle.addEventListener('click', () => {
-                const current = themeStylesheet.getAttribute('href').includes('neon') ? 'neon' : 'mono';
-                const next = current === 'neon' ? 'mono' : 'neon';
-                themeStylesheet.setAttribute('href', next === 'neon' ? 'assets/neon.css' : 'assets/style.css');
-                localStorage.setItem('theme', next);
-            });
-
             const { container, particles } = createParticles();
             createConnections(container, particles);
             loadFromStorage();
@@ -121,21 +108,21 @@
         const specialCaseForm = document.getElementById('specialCaseForm');
         const cancelForm = document.getElementById('cancelForm');
         const cancelSpecialForm = document.getElementById('cancelSpecialForm');
-        deathClaimBtn.addEventListener('click', () => {
-            deathClaimForm.classList.remove('hidden');
+        deathClaimBtn?.addEventListener('click', () => {
+            deathClaimForm?.classList.remove('hidden');
         });
 
-        specialCaseBtn.addEventListener('click', () => {
-            specialCaseForm.classList.remove('hidden');
+        specialCaseBtn?.addEventListener('click', () => {
+            specialCaseForm?.classList.remove('hidden');
         });
 
-        cancelForm.addEventListener('click', () => {
-            deathClaimForm.classList.add('hidden');
+        cancelForm?.addEventListener('click', () => {
+            deathClaimForm?.classList.add('hidden');
             resetForm();
         });
 
-        cancelSpecialForm.addEventListener('click', () => {
-            specialCaseForm.classList.add('hidden');
+        cancelSpecialForm?.addEventListener('click', () => {
+            specialCaseForm?.classList.add('hidden');
             resetSpecialForm();
         });
 
@@ -158,22 +145,6 @@
         }
 
 
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 3000);
-        }
-
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 3000);
-        }
-
-
         // Auto-format date inputs
         function formatDateInput(input) {
             let value = input.value.replace(/\D/g, ''); // Remove non-digits
@@ -186,12 +157,12 @@
             input.value = value;
         }
 
-        commencementDate.addEventListener('input', function() {
+        commencementDate?.addEventListener('input', function() {
             formatDateInput(this);
             calculateDuration();
         });
 
-        deathDate.addEventListener('input', function() {
+        deathDate?.addEventListener('input', function() {
             formatDateInput(this);
             calculateDuration();
         });
@@ -265,29 +236,6 @@
 
 
 
-                // Time-bar check using current date as intimation
-                const today = new Date();
-                const intimationDiff = (today - deathDateObj) / (1000 * 60 * 60 * 24);
-                let timeBarMessage = '';
-                if (commDateObj < new Date(2020, 0, 1)) {
-                    if (intimationDiff > 365 * 3) {
-                        timeBarMessage = '⚠️ Claim is time barred (death reported after 3 years)';
-                    }
-                } else {
-                    if (intimationDiff > 90) {
-                        timeBarMessage = '⚠️ Claim is time barred (death reported after 90 days)';
-                    }
-                }
-
-                if (timeBarMessage) {
-                    timeBarWarning.textContent = timeBarMessage;
-                    timeBarWarning.classList.remove('hidden');
-                } else {
-                    timeBarWarning.textContent = '';
-                    timeBarWarning.classList.add('hidden');
-                }
-            }
-        }
 
         function removeRow(button) {
             const row = button.closest('tr');
@@ -365,7 +313,7 @@
 
 
         // Special Case Save functionality
-        document.getElementById('saveSpecialCase').addEventListener('click', function() {
+        document.getElementById('saveSpecialCase')?.addEventListener('click', function() {
             const policyNo = document.getElementById('specialPolicyNumber').value;
             const name = document.getElementById('specialName').value;
             const type = document.getElementById('specialType').value;
@@ -604,7 +552,6 @@
         // Workflow logic
         const nomineeAvailable = document.getElementById('nomineeAvailable');
         const nomineeNotAvailable = document.getElementById('nomineeNotAvailable');
-        const letFormsLabel = document.getElementById('letFormsLabel');
         const investigationRadios = document.querySelectorAll('input[name="investigationType"]');
         const investigationDetails = document.getElementById('investigationDetails');
         const investigationDate = document.getElementById('investigationDate');
@@ -617,7 +564,7 @@
         const paymentDone = document.getElementById('paymentDone');
 
         // Nominee checkbox logic (mutually exclusive) with completion tracking
-        nomineeAvailable.addEventListener('change', function() {
+        nomineeAvailable?.addEventListener('change', function() {
             if (this.checked) {
                 nomineeNotAvailable.checked = false;
                 document.getElementById('letFormsSection').classList.add('hidden');
@@ -625,7 +572,7 @@
             checkSectionCompletion('checkNominee');
         });
 
-        nomineeNotAvailable.addEventListener('change', function() {
+        nomineeNotAvailable?.addEventListener('change', function() {
             if (this.checked) {
                 nomineeAvailable.checked = false;
                 document.getElementById('letFormsSection').classList.remove('hidden');
@@ -636,11 +583,11 @@
         });
 
         // Documents completion tracking
-        document.getElementById('deathClaimFormDocs').addEventListener('change', function() {
+        document.getElementById('deathClaimFormDocs')?.addEventListener('change', function() {
             checkSectionCompletion('documentsRequired');
         });
 
-        document.getElementById('letForms').addEventListener('change', function() {
+        document.getElementById('letForms')?.addEventListener('change', function() {
             checkSectionCompletion('documentsRequired');
         });
 
@@ -655,17 +602,17 @@
         });
 
         // Investigation received completion tracking
-        document.getElementById('investigationReceived').addEventListener('change', function() {
+        document.getElementById('investigationReceived')?.addEventListener('change', function() {
             checkSectionCompletion('investigation');
         });
 
         // D.O. Decision completion tracking
-        document.getElementById('doDecisionReceived').addEventListener('change', function() {
+        document.getElementById('doDecisionReceived')?.addEventListener('change', function() {
             checkSectionCompletion('doDecision');
         });
 
         // Investigation date calculation
-        investigationDate.addEventListener('change', function() {
+        investigationDate?.addEventListener('change', function() {
             if (this.value) {
                 const allottedDate = new Date(this.value);
                 const today = new Date();
@@ -678,7 +625,7 @@
         });
 
         // D.O. sent date calculation
-        doSentDate.addEventListener('change', function() {
+        doSentDate?.addEventListener('change', function() {
             if (this.value) {
                 const sentDate = new Date(this.value);
                 const today = new Date();
@@ -840,7 +787,7 @@
         }
 
         // Payment done - move to completed claims
-        paymentDone.addEventListener('change', function() {
+        paymentDone?.addEventListener('change', function() {
             if (this.checked) {
                 const policyNo = document.getElementById('policyNumber').value;
                 const name = document.getElementById('claimantName').value;
@@ -893,7 +840,7 @@
         });
 
         // Save progress functionality
-        document.getElementById('saveProgress').addEventListener('click', function() {
+        document.getElementById('saveProgress')?.addEventListener('click', function() {
             const policyNo = document.getElementById('policyNumber').value;
             const name = document.getElementById('claimantName').value;
             const selectedType = document.querySelector('input[name="claimType"]:checked');
@@ -1050,6 +997,4 @@
             daysSinceSent.classList.add('hidden');
             doDecisionSection.classList.add('hidden');
         }
-
-(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96fbbb47543f45ed',t:'MTc1NTI5Mjc4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
 
