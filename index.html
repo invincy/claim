@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🏢 LIC Claims Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/style.css">
+    <link id="themeStylesheet" rel="stylesheet" href="assets/style.css">
 </head>
 <body class="dark-bg min-h-screen p-4 md:p-6">
     <!-- Floating Particles -->
-    <div class="particles" id="particles"></div>
+    <div class="particles" id="particles">
+        <svg id="particleLines" class="particle-lines"></svg>
+    </div>
     
     <div class="max-w-7xl mx-auto relative z-10">
+        <div class="flex justify-end mb-4">
+            <button id="themeToggle" class="btn-ghost px-4 py-2 rounded-xl font-semibold text-sm">🎨 Toggle Theme</button>
+        </div>
         <!-- Header -->
         <div class="text-center mb-8">
             <div class="glass-header rounded-2xl p-8 mx-auto max-w-3xl pulse-glow">
-                <h1 class="text-4xl font-bold text-cyan-300 mb-3 glow-text">🏢 LIC Claims Hub</h1>
-                <p class="text-cyan-200 text-lg">✨ Advanced AI-powered claim processing system</p>
+                <h1 class="text-4xl font-bold text-gray-200 mb-3 glow-text">🏢 LIC Claims Hub</h1>
+                <p class="text-gray-400 text-lg">✨ Advanced AI-powered claim processing system</p>
             </div>
         </div>
 
@@ -109,6 +114,7 @@
             <!-- Suggestion -->
             <div id="suggestionBox" class="hidden mb-6 p-6 rounded-2xl backdrop-blur-sm">
                 <span id="suggestionText" class="font-bold text-xl"></span>
+                <div id="timeBarWarning" class="hidden mt-2 text-red-300 font-semibold"></div>
             </div>
 
             <!-- Manual Selection -->
@@ -223,15 +229,15 @@
                         <div class="p-6 pt-0 space-y-4">
                             <div class="space-y-3">
                                 <label class="option-card flex items-center p-4 rounded-xl">
-                                    <input type="radio" name="investigationType" value="ABM(s)" class="radio-modern mr-4">
+                                    <input type="radio" id="investigationABM" name="investigationType" value="ABM(s)" class="radio-modern mr-4">
                                     <span class="font-semibold text-gray-300">👨‍💼 ABM(s)</span>
                                 </label>
                                 <label class="option-card flex items-center p-4 rounded-xl">
-                                    <input type="radio" name="investigationType" value="Sr. B.M." class="radio-modern mr-4">
+                                    <input type="radio" id="investigationSrBM" name="investigationType" value="Sr. B.M." class="radio-modern mr-4">
                                     <span class="font-semibold text-gray-300">👔 Sr. B.M.</span>
                                 </label>
                                 <label class="option-card flex items-center p-4 rounded-xl">
-                                    <input type="radio" name="investigationType" value="D.O." class="radio-modern mr-4">
+                                    <input type="radio" id="investigationDO" name="investigationType" value="D.O." class="radio-modern mr-4">
                                     <span class="font-semibold text-gray-300">🏛️ D.O.</span>
                                 </label>
                             </div>
@@ -442,6 +448,7 @@
         </div>
     </div>
 
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg hidden"></div>
     <script src="assets/script.js" defer></script>
 </body>
 </html>
