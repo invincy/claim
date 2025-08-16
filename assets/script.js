@@ -1,4 +1,5 @@
         // Create floating particles
+
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
@@ -85,6 +86,7 @@
             updateCounters();
         });
 
+
         // Collapsible functionality
         document.querySelectorAll('.collapsible-header').forEach(header => {
             header.addEventListener('click', function() {
@@ -147,6 +149,14 @@
         const suggestionText = document.getElementById('suggestionText');
         const timeBarWarning = document.getElementById('timeBarWarning');
         const manualSelection = document.getElementById('manualSelection');
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
 
         function showToast(message) {
             const toast = document.getElementById('toast');
@@ -227,6 +237,33 @@
                 suggestionBox.className = `p-4 rounded-xl ${bgColor}`;
                 suggestionBox.classList.remove('hidden');
                 manualSelection.classList.remove('hidden');
+
+                // Time-bar check using current date as intimation
+                const today = new Date();
+                const intimationDiff = (today - deathDateObj) / (1000 * 60 * 60 * 24);
+                let timeBarMessage = '';
+                if (commDateObj < new Date(2020, 0, 1)) {
+                    if (intimationDiff > 365 * 3) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 3 years)';
+                    }
+                } else {
+                    if (intimationDiff > 90) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 90 days)';
+                    }
+                }
+
+                if (timeBarMessage) {
+                    timeBarWarning.textContent = timeBarMessage;
+                    timeBarWarning.classList.remove('hidden');
+                } else {
+                    timeBarWarning.textContent = '';
+                    timeBarWarning.classList.add('hidden');
+                }
+            }
+        }
+
+
+
 
                 // Time-bar check using current date as intimation
                 const today = new Date();
@@ -340,6 +377,7 @@
                 return;
             }
 
+
             if (resolved) {
                 // Add to completed special cases
                 const completedTableBody = document.getElementById('completedSpecialCasesTable');
@@ -375,7 +413,6 @@
                 if (activeTableBody.children.length === 0) {
                     activeTableBody.innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-gray-500">No active special cases</td></tr>';
                 }
-
 
                 saveToStorage();
                 showToast('Special case marked as resolved and moved to completed cases!');
@@ -868,6 +905,7 @@
             }
 
 
+
             // Save all form data
             const formData = {
                 commencementDate: document.getElementById('commencementDate').value,
@@ -951,6 +989,7 @@
             deathClaimForm.classList.add('hidden');
             resetForm();
         });
+
 
 
         function getClaimStage() {

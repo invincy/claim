@@ -3,6 +3,9 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+
+            filter: grayscale(100%);
+
         }
         
         .dark-bg::before {
