@@ -2,28 +2,85 @@
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
-            
+            const particles = [];
+
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
+
                 // Random starting position
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 6 + 's';
                 particle.style.animationDuration = (6 + Math.random() * 4) + 's';
-                
+
                 // Random size variation
                 const size = 1 + Math.random() * 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
-                
+
                 particlesContainer.appendChild(particle);
+                particles.push(particle);
             }
+
+            return { container: particlesContainer, particles };
         }
-        
+
+        function createConnections(container, particles) {
+            const svg = document.getElementById('particleLines');
+            const connections = [];
+            const clusterCount = 5;
+
+            for (let i = 0; i < clusterCount; i++) {
+                const clusterSize = Math.random() < 0.5 ? 2 : 3;
+                const indices = [];
+                while (indices.length < clusterSize) {
+                    const idx = Math.floor(Math.random() * particles.length);
+                    if (!indices.includes(idx)) indices.push(idx);
+                }
+                for (let j = 0; j < clusterSize - 1; j++) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    svg.appendChild(line);
+                    connections.push({ a: particles[indices[j]], b: particles[indices[j + 1]], line });
+                }
+            }
+
+            function updateLines() {
+                const rect = container.getBoundingClientRect();
+                connections.forEach(conn => {
+                    const rectA = conn.a.getBoundingClientRect();
+                    const rectB = conn.b.getBoundingClientRect();
+                    const x1 = rectA.left + rectA.width / 2 - rect.left;
+                    const y1 = rectA.top + rectA.height / 2 - rect.top;
+                    const x2 = rectB.left + rectB.width / 2 - rect.left;
+                    const y2 = rectB.top + rectB.height / 2 - rect.top;
+                    conn.line.setAttribute('x1', x1);
+                    conn.line.setAttribute('y1', y1);
+                    conn.line.setAttribute('x2', x2);
+                    conn.line.setAttribute('y2', y2);
+                });
+                requestAnimationFrame(updateLines);
+            }
+
+            requestAnimationFrame(updateLines);
+        }
+
         // Initialize particles when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
+            const themeStylesheet = document.getElementById('themeStylesheet');
+            const themeToggle = document.getElementById('themeToggle');
+
+            const savedTheme = localStorage.getItem('theme') || 'mono';
+            themeStylesheet.setAttribute('href', savedTheme === 'neon' ? 'assets/neon.css' : 'assets/style.css');
+
+            themeToggle.addEventListener('click', () => {
+                const current = themeStylesheet.getAttribute('href').includes('neon') ? 'neon' : 'mono';
+                const next = current === 'neon' ? 'mono' : 'neon';
+                themeStylesheet.setAttribute('href', next === 'neon' ? 'assets/neon.css' : 'assets/style.css');
+                localStorage.setItem('theme', next);
+            });
+
+            const { container, particles } = createParticles();
+            createConnections(container, particles);
             loadFromStorage();
             updateCounters();
         });
@@ -85,10 +142,18 @@
         const deathDate = document.getElementById('deathDate');
         const durationDisplay = document.getElementById('durationDisplay');
         const durationText = document.getElementById('durationText');
+
         const suggestionBox = document.getElementById('suggestionBox');
         const suggestionText = document.getElementById('suggestionText');
         const timeBarWarning = document.getElementById('timeBarWarning');
         const manualSelection = document.getElementById('manualSelection');
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
 
 
         function showToast(message) {
@@ -157,6 +222,7 @@
                     bgColor = 'suggestion-late';
                 }
 
+
                 suggestionText.textContent = suggestion;
                 suggestionBox.className = `p-4 rounded-xl ${bgColor}`;
                 suggestionBox.classList.remove('hidden');
@@ -185,10 +251,6 @@
                 }
             }
         }
-
-
-
-
 
         function removeRow(button) {
             const row = button.closest('tr');
@@ -314,8 +376,10 @@
                     activeTableBody.innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-gray-500">No active special cases</td></tr>';
                 }
 
+
                 saveToStorage();
                 showToast('Special case marked as resolved and moved to completed cases!');
+
             } else {
                 // Save to active special cases
                 const tableBody = document.getElementById('activeSpecialCasesTable');
@@ -376,9 +440,11 @@
                     `;
                     row.onclick = function() { openSpecialCase(this); };
                     tableBody.appendChild(row);
+
                 }
 
                 showToast('Special case saved successfully!');
+
             }
 
             specialCaseForm.classList.add('hidden');
@@ -779,10 +845,12 @@
                         activeTableBody.innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-gray-500">No active death claims</td></tr>';
                     }
 
+
                     saveToStorage();
                     showToast('Claim completed and moved to completed claims!');
                     deathClaimForm.classList.add('hidden');
                     resetForm();
+
                 }
             }
         });
@@ -793,10 +861,12 @@
             const name = document.getElementById('claimantName').value;
             const selectedType = document.querySelector('input[name="claimType"]:checked');
 
+
             if (!policyNo || !name || !selectedType) {
                 showToast('⚠️ Please fill basic claim information first.');
                 return;
             }
+
 
             // Save all form data
             const formData = {
@@ -834,7 +904,9 @@
                 }
             });
 
+
             const stage = getClaimStage();
+
 
             if (existingRow) {
                 // Update existing row
@@ -869,18 +941,17 @@
                     </td>
                 `;
                 row.onclick = function() { openCase(this); };
+
                 tableBody.appendChild(row);
             }
 
             saveToStorage();
 
-
             showToast('💾 Progress saved successfully!');
-
-        
             deathClaimForm.classList.add('hidden');
             resetForm();
         });
+
 
         function getClaimStage() {
             if (document.getElementById('paymentDone').checked) return 'Payment Done';
