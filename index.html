@@ -13,6 +13,7 @@
         <svg id="particleLines" class="particle-lines"></svg>
     </div>
     
+
     <div class="max-w-7xl mx-auto relative z-10">
         <!-- Header -->
         <div class="text-center mb-8">
@@ -21,6 +22,7 @@
                 <p class="text-gray-400 text-lg">✨ Advanced AI-powered claim processing system</p>
             </div>
         </div>
+
 
         <!-- Action Buttons -->
         <div class="glass-header rounded-2xl p-6 mb-8 mx-auto max-w-2xl">
@@ -35,7 +37,9 @@
         </div>
 
         <!-- Special Case Form (Hidden by default) -->
+
         <div id="specialCaseForm" class="hidden matte-form amber-glow rounded-3xl p-8 mb-8">
+
             <h3 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">⚡ Add Special Case</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -81,7 +85,9 @@
         </div>
 
         <!-- Death Claim Form (Hidden by default) -->
+
         <div id="deathClaimForm" class="hidden matte-form red-glow rounded-3xl p-8 mb-8">
+
             <h3 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">💀 Death Claim Form</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -103,6 +109,7 @@
             </div>
 
             <!-- Duration Display -->
+
             <div id="durationDisplay" class="hidden mb-6 p-6 bg-gray-900/40 rounded-2xl border border-gray-700/40 red-glow backdrop-blur-sm">
                 <span class="font-bold text-gray-300">⏱️ Duration: </span>
                 <span id="durationText" class="font-bold text-gray-300 text-xl"></span>
@@ -113,6 +120,7 @@
                 <span id="suggestionText" class="font-bold text-xl"></span>
                 <div id="timeBarWarning" class="hidden mt-2 text-gray-300 font-semibold"></div>
             </div>
+
 
             <!-- Manual Selection -->
             <div id="manualSelection" class="hidden mb-6">
@@ -136,10 +144,12 @@
             <!-- Workflow Sections -->
             <div id="workflowSections" class="hidden space-y-6 mb-8">
                 <!-- Check Nominee Section -->
+
                 <div class="workflow-section red-glow rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="checkNominee">
                         <span class="text-xl flex items-center gap-3">👥 Check Nominee</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
+
                     </button>
                     <div id="checkNominee" class="workflow-content">
                         <div class="p-6 pt-0 space-y-4">
@@ -156,10 +166,12 @@
                 </div>
 
                 <!-- Documents Required Section -->
+
                 <div class="workflow-section red-glow rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="documentsRequired">
                         <span class="text-xl flex items-center gap-3">📄 Documents Required</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
+
                     </button>
                     <div id="documentsRequired" class="workflow-content">
                         <div class="p-6 pt-0 space-y-4">
@@ -174,8 +186,10 @@
                                 </label>
                                 
                                 <!-- LET Form Requirements Table -->
+
                                   <div class="dark-table rounded-2xl border border-gray-600/30 shadow-2xl overflow-hidden">
                                     <div class="bg-gray-900/60 px-6 py-4 border-b border-gray-600/30">
+
                                         <h4 class="font-bold text-white text-lg flex items-center gap-2">💰 LET Form Requirements based on NCAP</h4>
                                     </div>
                                     <div class="overflow-x-auto">
@@ -187,6 +201,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="divide-y divide-gray-600/20">
+
                                                 <tr class="dark-table-row transition-colors">
                                                     <td class="px-6 py-4 font-semibold text-gray-300">Up to ₹5,000</td>
                                                     <td class="px-6 py-4 text-gray-300">Form 3806 (no stamp paper needed)</td>
@@ -207,6 +222,7 @@
                                                     <td class="px-6 py-4 font-semibold text-gray-300">Above ₹1,00,000</td>
                                                     <td class="px-6 py-4 text-gray-300">Form 3806-A (₹300 stamp), Form 3805 (₹300 stamp), Form 3807 (surety form), all notarized</td>
                                                 </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -217,10 +233,12 @@
                 </div>
 
                 <!-- Investigation Section -->
+
                 <div class="workflow-section red-glow rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="investigation">
                         <span class="text-xl flex items-center gap-3">🔍 Investigation</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
+
                     </button>
                     <div id="investigation" class="workflow-content">
                         <div class="p-6 pt-0 space-y-4">
@@ -243,8 +261,10 @@
                                     <label class="block text-sm font-bold text-gray-300 mb-3">📅 Date Investigation Allotted</label>
                                     <input type="date" id="investigationDate" class="dark-input w-full px-4 py-3 rounded-xl">
                                 </div>
+
                                 <div id="daysSinceAllotted" class="text-sm text-gray-300 hidden bg-gray-900/40 p-4 rounded-xl border border-gray-700/40 red-glow">
                                 <span class="font-semibold">⏰ Days since allotted: </span><span id="daysCount" class="font-bold text-gray-300 text-lg"></span>
+
                                 </div>
                                 <label class="option-card flex items-center p-4 rounded-xl">
                                     <input type="checkbox" id="investigationReceived" class="checkbox-modern mr-4">
@@ -256,10 +276,12 @@
                 </div>
 
                 <!-- D.O. Decision Section (Early claims only) -->
+
                 <div id="doDecisionSection" class="workflow-section red-glow rounded-2xl hidden">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="doDecision">
                         <span class="text-xl flex items-center gap-3">⚖️ D.O. Decision</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
+
                     </button>
                     <div id="doDecision" class="workflow-content">
                         <div class="p-6 pt-0 space-y-4">
@@ -267,9 +289,11 @@
                                 <label class="block text-sm font-bold text-gray-300 mb-3">📤 Date Sent to D.O.</label>
                                 <input type="date" id="doSentDate" class="dark-input w-full px-4 py-3 rounded-xl">
                             </div>
+
                             <div id="daysSinceSent" class="text-sm text-gray-300 hidden bg-gray-900/40 p-4 rounded-xl border border-gray-700/40 red-glow">
                                 <span class="font-semibold">⏰ Days since sent: </span><span id="doSentDaysCount" class="font-bold text-gray-300 text-lg"></span>
                             </div>
+
                             <label class="option-card flex items-center p-4 rounded-xl">
                                 <input type="checkbox" id="doDecisionReceived" class="checkbox-modern mr-4">
                                 <span class="font-semibold text-gray-300">✅ D.O. Decision Received</span>
@@ -279,10 +303,12 @@
                 </div>
 
                 <!-- Proceed for Payment Section -->
+
                 <div class="workflow-section red-glow rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="proceedPayment">
                         <span class="text-xl flex items-center gap-3">💰 Proceed for Payment</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
+
                     </button>
                     <div id="proceedPayment" class="workflow-content">
                         <div class="p-6 pt-0">
@@ -295,6 +321,7 @@
                 </div>
 
                 <!-- Query and Save Section -->
+
                 <div class="workflow-section red-glow rounded-2xl p-6 space-y-4">
                     <div>
                         <label class="block text-lg font-bold text-gray-300 mb-3">📝 Notes</label>
@@ -304,6 +331,7 @@
                         💾 Save Progress
                     </button>
                 </div>
+
             </div>
 
             <div class="flex gap-4">
@@ -317,8 +345,10 @@
         <div class="glass-header rounded-2xl p-6 mb-8">
             <div class="space-y-6">
                 <!-- Active Death Claims -->
+
                 <div class="matte-card red-glow rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="activeDeathClaims">
+
                         <span class="text-lg flex items-center gap-3">💀 Active Death Claims</span>
                         <div class="flex items-center gap-4">
                             <span id="activeDeathClaimsCounter" class="counter-badge px-3 py-1 rounded-full text-sm font-bold">0</span>
@@ -350,8 +380,10 @@
                 </div>
 
                 <!-- Active Special Cases -->
+
                 <div class="matte-card amber-glow rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="activeSpecialCases">
+
                         <span class="text-lg flex items-center gap-3">⚡ Active Special Cases</span>
                         <div class="flex items-center gap-4">
                             <span id="activeSpecialCasesCounter" class="counter-badge px-3 py-1 rounded-full text-sm font-bold">0</span>
@@ -383,8 +415,10 @@
                 </div>
 
                 <!-- Completed Death Claims -->
+
                 <div class="matte-card green-glow rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="completedDeathClaims">
+
                         <span class="text-lg flex items-center gap-3">✅ Completed Death Claims</span>
                         <span class="transform transition-transform text-gray-300 text-xl">▼</span>
                     </button>
@@ -413,8 +447,10 @@
                 </div>
 
                 <!-- Completed Special Cases -->
+
                 <div class="matte-card green-glow rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="completedSpecialCases">
+
                         <span class="text-lg flex items-center gap-3">🎯 Completed Special Cases</span>
                         <span class="transform transition-transform text-gray-300 text-xl">▼</span>
                     </button>
