@@ -1,3 +1,4 @@
+
         .dark-bg {
             background: radial-gradient(ellipse at center, #887700 0%, #332200 100%);
             min-height: 100vh;
@@ -20,6 +21,7 @@
             z-index: 0;
         }
 
+
         .particles {
             position: fixed;
             top: 0;
@@ -38,6 +40,7 @@
             height: 100%;
         }
 
+
         .particle {
             position: absolute;
             z-index: 1;
@@ -48,6 +51,7 @@
             animation: float 6s infinite linear;
             box-shadow: 0 0 6px rgba(255, 223, 0, 0.8);
         }
+
 
         @keyframes float {
             0% {
@@ -66,6 +70,7 @@
             }
         }
 
+
         .particle:nth-child(2n) {
             animation-duration: 8s;
             background: rgba(255, 223, 0, 0.4);
@@ -83,6 +88,7 @@
             stroke-width: 1;
             filter: drop-shadow(0 0 4px rgba(255, 223, 0, 0.4));
         }
+
         
         .matte-card { 
             background: rgba(0, 20, 40, 0.15);
@@ -167,6 +173,7 @@
             }
         }
         
+
         .btn-primary {
             background: rgba(0, 150, 255, 0.2);
             color: #ffe066;
@@ -264,6 +271,7 @@
         .dark-input::placeholder {
             color: rgba(255, 223, 0, 0.6);
         }
+
         
         .dark-table {
             background: rgba(0, 20, 40, 0.2);
@@ -271,17 +279,20 @@
             backdrop-filter: blur(15px);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
         }
+
         .dark-table-header {
             background: rgba(0, 30, 60, 0.4);
             color: #ffe066;
             border-bottom: 1px solid rgba(0, 255, 255, 0.4);
             text-shadow: 0 0 5px rgba(255, 223, 0, 0.5);
         }
+
         .dark-table-row:hover {
             background: rgba(0, 100, 150, 0.2);
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
         }
         
+
         .workflow-section {
             background: rgba(0, 20, 40, 0.2);
             border: 1px solid rgba(0, 255, 255, 0.3);
@@ -293,6 +304,7 @@
             border-color: rgba(0, 255, 255, 0.5);
             box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
         }
+
         
         .collapsible-content {
             max-height: 0;
@@ -311,6 +323,7 @@
             max-height: 1000px;
         }
         
+
         .suggestion-early,
         .suggestion-medium,
         .suggestion-late {
@@ -318,6 +331,7 @@
             border: 1px solid rgba(0, 255, 255, 0.3);
             color: #ffe066;
         }
+
         
         .checkbox-modern {
             appearance: none;
@@ -371,6 +385,7 @@
             border-radius: 50%;
         }
         
+
         .option-card {
             background: rgba(0, 20, 40, 0.3);
             border: 1px solid rgba(0, 255, 255, 0.3);
@@ -395,12 +410,14 @@
             border: 1px solid rgba(99, 102, 241, 0.3);
             backdrop-filter: blur(10px);
         }
+
         
         .section-header {
             background: rgba(17, 24, 39, 0.8);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
+
         .section-header:hover {
             background: rgba(17, 24, 39, 0.9);
         }
@@ -451,6 +468,7 @@
                     0 0 35px rgba(255, 223, 0, 0.6);
             }
         }
+
         
         .pulse-glow {
             animation: pulse-glow 2s ease-in-out infinite alternate;
@@ -458,9 +476,11 @@
         
         @keyframes pulse-glow {
             from {
+
                 box-shadow: 0 0 20px rgba(255, 223, 0, 0.2);
             }
             to {
                 box-shadow: 0 0 30px rgba(255, 223, 0, 0.4);
             }
         }
+
