@@ -1,4 +1,5 @@
         // Create floating particles
+
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
@@ -85,6 +86,7 @@
             updateCounters();
         });
 
+
         // Collapsible functionality
         document.querySelectorAll('.collapsible-header').forEach(header => {
             header.addEventListener('click', function() {
@@ -142,6 +144,7 @@
         const deathDate = document.getElementById('deathDate');
         const durationDisplay = document.getElementById('durationDisplay');
         const durationText = document.getElementById('durationText');
+
         const suggestionBox = document.getElementById('suggestionBox');
         const suggestionText = document.getElementById('suggestionText');
         const timeBarWarning = document.getElementById('timeBarWarning');
@@ -153,6 +156,23 @@
             toast.classList.remove('hidden');
             setTimeout(() => toast.classList.add('hidden'), 3000);
         }
+
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
 
         // Auto-format date inputs
         function formatDateInput(input) {
@@ -212,6 +232,7 @@
                     bgColor = 'suggestion-late';
                 }
 
+
                 suggestionText.textContent = suggestion;
                 suggestionBox.className = `p-4 rounded-xl ${bgColor}`;
                 suggestionBox.classList.remove('hidden');
@@ -244,6 +265,29 @@
 
 
 
+                // Time-bar check using current date as intimation
+                const today = new Date();
+                const intimationDiff = (today - deathDateObj) / (1000 * 60 * 60 * 24);
+                let timeBarMessage = '';
+                if (commDateObj < new Date(2020, 0, 1)) {
+                    if (intimationDiff > 365 * 3) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 3 years)';
+                    }
+                } else {
+                    if (intimationDiff > 90) {
+                        timeBarMessage = '⚠️ Claim is time barred (death reported after 90 days)';
+                    }
+                }
+
+                if (timeBarMessage) {
+                    timeBarWarning.textContent = timeBarMessage;
+                    timeBarWarning.classList.remove('hidden');
+                } else {
+                    timeBarWarning.textContent = '';
+                    timeBarWarning.classList.add('hidden');
+                }
+            }
+        }
 
         function removeRow(button) {
             const row = button.closest('tr');
@@ -333,6 +377,7 @@
                 return;
             }
 
+
             if (resolved) {
                 // Add to completed special cases
                 const completedTableBody = document.getElementById('completedSpecialCasesTable');
@@ -371,6 +416,7 @@
 
                 saveToStorage();
                 showToast('Special case marked as resolved and moved to completed cases!');
+
             } else {
                 // Save to active special cases
                 const tableBody = document.getElementById('activeSpecialCasesTable');
@@ -431,9 +477,11 @@
                     `;
                     row.onclick = function() { openSpecialCase(this); };
                     tableBody.appendChild(row);
+
                 }
 
                 showToast('Special case saved successfully!');
+
             }
 
             specialCaseForm.classList.add('hidden');
@@ -834,10 +882,12 @@
                         activeTableBody.innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-gray-500">No active death claims</td></tr>';
                     }
 
+
                     saveToStorage();
                     showToast('Claim completed and moved to completed claims!');
                     deathClaimForm.classList.add('hidden');
                     resetForm();
+
                 }
             }
         });
@@ -848,10 +898,13 @@
             const name = document.getElementById('claimantName').value;
             const selectedType = document.querySelector('input[name="claimType"]:checked');
 
+
             if (!policyNo || !name || !selectedType) {
                 showToast('⚠️ Please fill basic claim information first.');
                 return;
             }
+
+
 
             // Save all form data
             const formData = {
@@ -889,7 +942,9 @@
                 }
             });
 
+
             const stage = getClaimStage();
+
 
             if (existingRow) {
                 // Update existing row
@@ -924,6 +979,7 @@
                     </td>
                 `;
                 row.onclick = function() { openCase(this); };
+
                 tableBody.appendChild(row);
             }
 
@@ -933,6 +989,8 @@
             deathClaimForm.classList.add('hidden');
             resetForm();
         });
+
+
 
         function getClaimStage() {
             if (document.getElementById('paymentDone').checked) return 'Payment Done';
@@ -994,3 +1052,4 @@
         }
 
 (function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96fbbb47543f45ed',t:'MTc1NTI5Mjc4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
+
