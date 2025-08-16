@@ -102,6 +102,7 @@
         });
 
         // Form functionality
+
         const deathClaimBtn = document.getElementById('deathClaimBtn');
         const specialCaseBtn = document.getElementById('specialCaseBtn');
         const deathClaimForm = document.getElementById('deathClaimForm');
@@ -137,6 +138,7 @@
         const timeBarWarning = document.getElementById('timeBarWarning');
         const manualSelection = document.getElementById('manualSelection');
 
+       
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
