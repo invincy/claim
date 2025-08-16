@@ -76,6 +76,7 @@
 
 
 
+
         // Collapsible functionality
         document.querySelectorAll('.collapsible-header').forEach(header => {
             header.addEventListener('click', function() {
@@ -148,6 +149,7 @@
         }
 
 
+
         // Auto-format date inputs
         function formatDateInput(input) {
             let value = input.value.replace(/\D/g, ''); // Remove non-digits
@@ -160,7 +162,6 @@
             input.value = value;
         }
 
-
         commencementDate?.addEventListener('input', function() {
             formatDateInput(this);
             calculateDuration();
@@ -170,6 +171,7 @@
             formatDateInput(this);
             calculateDuration();
         });
+
 
 
         function calculateDuration() {
@@ -863,7 +865,6 @@
         });
 
         // Save progress functionality
-
         document.getElementById('saveProgress')?.addEventListener('click', function() {
 
             const policyNo = document.getElementById('policyNumber').value;
