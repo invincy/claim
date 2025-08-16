@@ -66,12 +66,14 @@
         }
 
         // Initialize particles when page loads
+
         document.addEventListener('DOMContentLoaded', function() {
             const { container, particles } = createParticles();
             createConnections(container, particles);
             loadFromStorage();
             updateCounters();
         });
+
 
 
         // Collapsible functionality
@@ -158,6 +160,7 @@
             input.value = value;
         }
 
+
         commencementDate?.addEventListener('input', function() {
             formatDateInput(this);
             calculateDuration();
@@ -167,6 +170,7 @@
             formatDateInput(this);
             calculateDuration();
         });
+
 
         function calculateDuration() {
             const commDate = commencementDate.value.replace(/\//g, '');
@@ -313,8 +317,10 @@
 
 
 
+
         // Special Case Save functionality
         document.getElementById('saveSpecialCase')?.addEventListener('click', function() {
+
             const policyNo = document.getElementById('specialPolicyNumber').value;
             const name = document.getElementById('specialName').value;
             const type = document.getElementById('specialType').value;
@@ -551,6 +557,7 @@
         }
 
         // Workflow logic
+
         const nomineeAvailable = document.getElementById('nomineeAvailable');
         const nomineeNotAvailable = document.getElementById('nomineeNotAvailable');
         const investigationRadios = document.querySelectorAll('input[name="investigationType"]');
@@ -566,6 +573,7 @@
 
         // Nominee checkbox logic (mutually exclusive) with completion tracking
         nomineeAvailable?.addEventListener('change', function() {
+
             if (this.checked) {
                 nomineeNotAvailable.checked = false;
                 document.getElementById('letFormsSection').classList.add('hidden');
@@ -573,7 +581,9 @@
             checkSectionCompletion('checkNominee');
         });
 
+
         nomineeNotAvailable?.addEventListener('change', function() {
+
             if (this.checked) {
                 nomineeAvailable.checked = false;
                 document.getElementById('letFormsSection').classList.remove('hidden');
@@ -584,11 +594,13 @@
         });
 
         // Documents completion tracking
+
         document.getElementById('deathClaimFormDocs')?.addEventListener('change', function() {
             checkSectionCompletion('documentsRequired');
         });
 
         document.getElementById('letForms')?.addEventListener('change', function() {
+
             checkSectionCompletion('documentsRequired');
         });
 
@@ -603,17 +615,23 @@
         });
 
         // Investigation received completion tracking
+
         document.getElementById('investigationReceived')?.addEventListener('change', function() {
+
             checkSectionCompletion('investigation');
         });
 
         // D.O. Decision completion tracking
+
         document.getElementById('doDecisionReceived')?.addEventListener('change', function() {
+
             checkSectionCompletion('doDecision');
         });
 
         // Investigation date calculation
+
         investigationDate?.addEventListener('change', function() {
+
             if (this.value) {
                 const allottedDate = new Date(this.value);
                 const today = new Date();
@@ -626,7 +644,9 @@
         });
 
         // D.O. sent date calculation
+
         doSentDate?.addEventListener('change', function() {
+
             if (this.value) {
                 const sentDate = new Date(this.value);
                 const today = new Date();
@@ -788,7 +808,9 @@
         }
 
         // Payment done - move to completed claims
+
         paymentDone?.addEventListener('change', function() {
+
             if (this.checked) {
                 const policyNo = document.getElementById('policyNumber').value;
                 const name = document.getElementById('claimantName').value;
@@ -841,7 +863,9 @@
         });
 
         // Save progress functionality
+
         document.getElementById('saveProgress')?.addEventListener('click', function() {
+
             const policyNo = document.getElementById('policyNumber').value;
             const name = document.getElementById('claimantName').value;
             const selectedType = document.querySelector('input[name="claimType"]:checked');
