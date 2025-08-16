@@ -102,27 +102,28 @@
         });
 
         // Form functionality
+
         const deathClaimBtn = document.getElementById('deathClaimBtn');
         const specialCaseBtn = document.getElementById('specialCaseBtn');
         const deathClaimForm = document.getElementById('deathClaimForm');
         const specialCaseForm = document.getElementById('specialCaseForm');
         const cancelForm = document.getElementById('cancelForm');
         const cancelSpecialForm = document.getElementById('cancelSpecialForm');
-        deathClaimBtn.addEventListener('click', () => {
-            deathClaimForm.classList.remove('hidden');
+        deathClaimBtn?.addEventListener('click', () => {
+            deathClaimForm?.classList.remove('hidden');
         });
 
-        specialCaseBtn.addEventListener('click', () => {
-            specialCaseForm.classList.remove('hidden');
+        specialCaseBtn?.addEventListener('click', () => {
+            specialCaseForm?.classList.remove('hidden');
         });
 
-        cancelForm.addEventListener('click', () => {
-            deathClaimForm.classList.add('hidden');
+        cancelForm?.addEventListener('click', () => {
+            deathClaimForm?.classList.add('hidden');
             resetForm();
         });
 
-        cancelSpecialForm.addEventListener('click', () => {
-            specialCaseForm.classList.add('hidden');
+        cancelSpecialForm?.addEventListener('click', () => {
+            specialCaseForm?.classList.add('hidden');
             resetSpecialForm();
         });
 
@@ -157,12 +158,12 @@
             input.value = value;
         }
 
-        commencementDate.addEventListener('input', function() {
+        commencementDate?.addEventListener('input', function() {
             formatDateInput(this);
             calculateDuration();
         });
 
-        deathDate.addEventListener('input', function() {
+        deathDate?.addEventListener('input', function() {
             formatDateInput(this);
             calculateDuration();
         });
@@ -313,7 +314,7 @@
 
 
         // Special Case Save functionality
-        document.getElementById('saveSpecialCase').addEventListener('click', function() {
+        document.getElementById('saveSpecialCase')?.addEventListener('click', function() {
             const policyNo = document.getElementById('specialPolicyNumber').value;
             const name = document.getElementById('specialName').value;
             const type = document.getElementById('specialType').value;
@@ -552,7 +553,6 @@
         // Workflow logic
         const nomineeAvailable = document.getElementById('nomineeAvailable');
         const nomineeNotAvailable = document.getElementById('nomineeNotAvailable');
-        const letFormsLabel = document.getElementById('letFormsLabel');
         const investigationRadios = document.querySelectorAll('input[name="investigationType"]');
         const investigationDetails = document.getElementById('investigationDetails');
         const investigationDate = document.getElementById('investigationDate');
@@ -565,7 +565,7 @@
         const paymentDone = document.getElementById('paymentDone');
 
         // Nominee checkbox logic (mutually exclusive) with completion tracking
-        nomineeAvailable.addEventListener('change', function() {
+        nomineeAvailable?.addEventListener('change', function() {
             if (this.checked) {
                 nomineeNotAvailable.checked = false;
                 document.getElementById('letFormsSection').classList.add('hidden');
@@ -573,7 +573,7 @@
             checkSectionCompletion('checkNominee');
         });
 
-        nomineeNotAvailable.addEventListener('change', function() {
+        nomineeNotAvailable?.addEventListener('change', function() {
             if (this.checked) {
                 nomineeAvailable.checked = false;
                 document.getElementById('letFormsSection').classList.remove('hidden');
@@ -584,11 +584,11 @@
         });
 
         // Documents completion tracking
-        document.getElementById('deathClaimFormDocs').addEventListener('change', function() {
+        document.getElementById('deathClaimFormDocs')?.addEventListener('change', function() {
             checkSectionCompletion('documentsRequired');
         });
 
-        document.getElementById('letForms').addEventListener('change', function() {
+        document.getElementById('letForms')?.addEventListener('change', function() {
             checkSectionCompletion('documentsRequired');
         });
 
@@ -603,17 +603,17 @@
         });
 
         // Investigation received completion tracking
-        document.getElementById('investigationReceived').addEventListener('change', function() {
+        document.getElementById('investigationReceived')?.addEventListener('change', function() {
             checkSectionCompletion('investigation');
         });
 
         // D.O. Decision completion tracking
-        document.getElementById('doDecisionReceived').addEventListener('change', function() {
+        document.getElementById('doDecisionReceived')?.addEventListener('change', function() {
             checkSectionCompletion('doDecision');
         });
 
         // Investigation date calculation
-        investigationDate.addEventListener('change', function() {
+        investigationDate?.addEventListener('change', function() {
             if (this.value) {
                 const allottedDate = new Date(this.value);
                 const today = new Date();
@@ -626,7 +626,7 @@
         });
 
         // D.O. sent date calculation
-        doSentDate.addEventListener('change', function() {
+        doSentDate?.addEventListener('change', function() {
             if (this.value) {
                 const sentDate = new Date(this.value);
                 const today = new Date();
@@ -788,7 +788,7 @@
         }
 
         // Payment done - move to completed claims
-        paymentDone.addEventListener('change', function() {
+        paymentDone?.addEventListener('change', function() {
             if (this.checked) {
                 const policyNo = document.getElementById('policyNumber').value;
                 const name = document.getElementById('claimantName').value;
@@ -841,7 +841,7 @@
         });
 
         // Save progress functionality
-        document.getElementById('saveProgress').addEventListener('click', function() {
+        document.getElementById('saveProgress')?.addEventListener('click', function() {
             const policyNo = document.getElementById('policyNumber').value;
             const name = document.getElementById('claimantName').value;
             const selectedType = document.querySelector('input[name="claimType"]:checked');
