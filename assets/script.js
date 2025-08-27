@@ -70,15 +70,53 @@
         document.addEventListener('DOMContentLoaded', function() {
             const { container, particles } = createParticles();
             createConnections(container, particles);
-            loadFromStorage();
-            updateCounters();
+            
+            const toolsPanel = document.querySelector('.dash-right');
+            if (toolsPanel) {
+                const tabs = toolsPanel.querySelectorAll('.tool-tab');
+        const panels = {
+            requirements: document.getElementById('requirementsPanel'),
+            calculator: document.getElementById('calculatorPanel'),
+            notes: document.getElementById('notesPanel')
+        };
+        const notesTextarea = document.getElementById('notesTextarea');
+        const requirementsTypeSelect = document.getElementById('requirementsType');
+        const letRequirementsTable = document.getElementById('letRequirementsTable');
+
+        // 1. Tab Switching Logic
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Deactivate all tabs
+                tabs.forEach(t => t.classList.remove('active-tab'));
+                // Hide all panels
+                Object.values(panels).forEach(panel => panel && panel.classList.add('hidden'));
+
+                // Activate clicked tab
+                tab.classList.add('active-tab');
+                // Show corresponding panel
+                const tabName = tab.dataset.tab;
+                if (panels[tabName]) {
+                    panels[tabName].classList.remove('hidden');
+                }
+            });
         });
 
+        // 2. Requirements Dropdown Logic (placeholder for now)
+        if (requirementsTypeSelect && letRequirementsTable) {
+            requirementsTypeSelect.addEventListener('change', (e) => {
+                letRequirementsTable.style.display = e.target.value === 'LET' ? 'block' : 'none';
+            });
+        }
 
-
-
-
-
+        // 3. Notes Textarea Autosave to localStorage
+        if (notesTextarea) {
+            // Load saved notes on page load
+            notesTextarea.value = localStorage.getItem('dashboard_notes') || '';
+            // Save notes on input
+            notesTextarea.addEventListener('input', () => localStorage.setItem('dashboard_notes', notesTextarea.value));
+        }
+    }
+        
         // Collapsible functionality
         document.querySelectorAll('.collapsible-header').forEach(header => {
             header.addEventListener('click', function() {
@@ -1027,3 +1065,7 @@
             doDecisionSection.classList.add('hidden');
         }
 
+        // Initial Load
+        loadFromStorage();
+        updateCounters();
+    });
