@@ -7,8 +7,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link id="themeStylesheet" rel="stylesheet" href="assets/style.css">
     <style>
+        /* --- LIC Yellow Theme Overrides --- */
+
+        /* 1. Particle System */
         .particle-lines line {
-            stroke: #FFC700; /* A vibrant yellow, close to LIC's branding */
+            stroke: #FFC700; /* A vibrant yellow */
+            filter: drop-shadow(0 0 4px rgba(255, 199, 0, 0.5));
+        }
+        .particle {
+            background: rgba(255, 199, 0, 0.6); /* yellow */
+            box-shadow: 0 0 6px rgba(255, 199, 0, 0.8); /* yellow glow */
+        }
+        .particle:nth-child(2n) {
+            background: rgba(255, 217, 82, 0.4); /* lighter yellow for variation */
+            box-shadow: 0 0 4px rgba(255, 217, 82, 0.6);
+        }
+        .particle:nth-child(3n) {
+            background: rgba(255, 199, 0, 0.3); /* main yellow, less opacity */
+            box-shadow: 0 0 3px rgba(255, 199, 0, 0.5);
+        }
+
+        /* 2. Header Glow Effect */
+        .glow-text {
+            /* This overrides the default cyan glow to match the yellow text */
+            text-shadow: 
+                0 0 8px rgba(255, 199, 0, 0.7),
+                0 0 16px rgba(255, 199, 0, 0.5);
+            animation: textGlowYellow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlowYellow {
+            from { text-shadow: 0 0 8px rgba(255, 199, 0, 0.7), 0 0 16px rgba(255, 199, 0, 0.5); }
+            to { text-shadow: 0 0 12px rgba(255, 199, 0, 0.8), 0 0 24px rgba(255, 199, 0, 0.6); }
         }
     </style>
 </head>
