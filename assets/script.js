@@ -1236,3 +1236,23 @@
         addSearchFunctionality('deathClaimSearch', 'activeDeathClaimsTable', '— No claims match your search', '— No active death claims');
         addSearchFunctionality('specialCaseSearch', 'activeSpecialCasesTable', '— No special cases match your search', '— No active special cases');
     });
+         // Theme toggle
+         const themeToggle = document.getElementById('themeToggle');
+         const themeStylesheet = document.getElementById('themeStylesheet');
+         let currentTheme = localStorage.getItem('theme') || 'dark';
+
+         function setTheme(theme) {
+             if (theme === 'light') {
+                 themeStylesheet.setAttribute('href', 'assets/style-light.css'); // Link to your light theme CSS
+                 document.body.classList.remove('dark-bg');
+             } else {
+                 themeStylesheet.setAttribute('href', 'assets/style.css');
+                 document.body.classList.add('dark-bg');
+             }
+         }
+
+         themeToggle.addEventListener('change', () => {
+             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+             localStorage.setItem('theme', currentTheme);
+             setTheme(currentTheme);
+         });
