@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏢 LIC Claims Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/neon.css">
+    <title>// LIC Claims Hub</title>
+    <!-- All styles are now combined into style.css for full offline use. -->
     <link id="themeStylesheet" rel="stylesheet" href="assets/style.css">
     <style>
         /* Custom styles removed to revert to a more minimal, default theme. */
     </style>
 </head>
 <body class="dark-bg min-h-screen">
-    <!-- tsParticles container -->
-    <div id="tsparticles"></div>
-    <div class="max-w-7xl mx-auto relative z-10 p-4 md:p-6">
+    <!-- Floating Particles (Offline Version) -->
+    <div class="particles" id="particles">
+        <svg id="particleLines" class="particle-lines"></svg>
+    </div>
+    <div class="relative z-10 p-4 md:p-6">
         <!-- Header -->
         <div class="text-center mb-8">
             <div class="glass-header rounded-2xl p-8 mx-auto max-w-3xl">
@@ -64,14 +65,14 @@
             </div>
             
             <div class="mb-6">
-                <label class="block text-sm font-bold text-gray-300 mb-3">📝 Issue</label>
+                <label class="block text-sm font-bold text-gray-300 mb-3">Issue</label>
                 <textarea id="specialIssue" rows="4" class="dark-input w-full px-4 py-3 rounded-xl font-medium" placeholder="Describe the issue..."></textarea>
             </div>
 
             <div class="mb-8">
                 <label class="option-card flex items-center p-4 rounded-xl">
                     <input type="checkbox" id="specialResolved" class="checkbox-modern mr-3">
-                    <span class="font-medium text-gray-300">✅ Mark as resolved</span>
+                    <span class="font-medium text-gray-300">✓ Mark as resolved</span>
                 </label>
             </div>
 
@@ -79,10 +80,10 @@
 
                 <button id="saveSpecialCase" class="btn-primary px-6 py-3 rounded-xl font-semibold text-sm">
 
-                    💾 Save Case
+                    Save Case
                 </button>
                 <button id="cancelSpecialForm" class="btn-ghost px-6 py-3 rounded-xl font-semibold text-sm">
-                    ❌ Cancel
+                    Cancel
                 </button>
             </div>
         </div>
@@ -90,22 +91,22 @@
         <!-- Death Claim Form (Hidden by default) -->
         <div id="deathClaimForm" class="hidden matte-form rounded-3xl p-8 mb-8">
 
-            <h3 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">💀 Death Claim Form</h3>
+            <h3 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">† Death Claim Form</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                    <label class="block text-sm font-bold text-gray-300 mb-3">📋 Policy Number</label>
+                    <label class="block text-sm font-bold text-gray-300 mb-3">Policy Number</label>
                     <input type="text" id="policyNumber" class="dark-input w-full px-4 py-3 rounded-xl font-medium">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-gray-300 mb-3">👤 Name</label>
+                    <label class="block text-sm font-bold text-gray-300 mb-3">Name</label>
                     <input type="text" id="claimantName" class="dark-input w-full px-4 py-3 rounded-xl font-medium">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-gray-300 mb-3">📅 Date of Commencement/ Revival (dd/mm/yyyy)</label>
+                    <label class="block text-sm font-bold text-gray-300 mb-3">Date of Commencement/ Revival (dd/mm/yyyy)</label>
                     <input type="text" id="commencementDate" placeholder="01/01/2020" maxlength="10" class="dark-input w-full px-4 py-3 rounded-xl font-medium">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-gray-300 mb-3">⚰️ Date of Death (dd/mm/yyyy)</label>
+                    <label class="block text-sm font-bold text-gray-300 mb-3">Date of Death (dd/mm/yyyy)</label>
                     <input type="text" id="deathDate" placeholder="15/03/2023" maxlength="10" class="dark-input w-full px-4 py-3 rounded-xl font-medium">
                 </div>
             </div>
@@ -113,7 +114,7 @@
             <!-- Duration Display -->
 
             <div id="durationDisplay" class="hidden mb-6 p-6 bg-gray-900/40 rounded-2xl border border-gray-700/40 backdrop-blur-sm">
-                <span class="font-bold text-gray-300">⏱️ Duration: </span>
+                <span class="font-bold text-gray-300">Duration: </span>
                 <span id="durationText" class="font-bold text-gray-300 text-xl"></span>
             </div>
 
@@ -130,15 +131,15 @@
                 <div class="space-y-3">
                     <label class="option-card flex items-center p-4 rounded-xl">
                         <input type="radio" name="claimType" value="Early" class="radio-modern mr-4">
-                        <span class="font-semibold text-gray-300">🔴 Early</span>
+                        <span class="font-semibold text-gray-300">// Early</span>
                     </label>
                     <label class="option-card flex items-center p-4 rounded-xl">
                         <input type="radio" name="claimType" value="Non-Early (4–5 Yrs)" class="radio-modern mr-4">
-                        <span class="font-semibold text-gray-300">🔵 Non-Early (4–5 Yrs)</span>
+                        <span class="font-semibold text-gray-300">// Non-Early (4–5 Yrs)</span>
                     </label>
                     <label class="option-card flex items-center p-4 rounded-xl">
                         <input type="radio" name="claimType" value="Non-Early" class="radio-modern mr-4">
-                        <span class="font-semibold text-gray-300">🟢 Non-Early</span>
+                        <span class="font-semibold text-gray-300">// Non-Early</span>
                     </label>
                 </div>
             </div>
@@ -621,100 +622,5 @@
     <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg hidden"></div>
     <!-- IMPORTANT: You may need to remove the old particle animation logic from assets/script.js to prevent conflicts. -->
     <script src="assets/script.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            const particleOptions = {
-                fullScreen: {
-                    enable: true,
-                    zIndex: 0
-                },
-                fpsLimit: 60,
-                detectRetina: true,
-                pauseOnBlur: true,
-                particles: {
-                    number: {
-                        value: 80,
-                        density: {
-                            enable: true,
-                            area: 800
-                        }
-                    },
-                    color: {
-                        value: "#00ffff"
-                    },
-                    shape: {
-                        type: "circle"
-                    },
-                    opacity: {
-                        value: 0.25
-                    },
-                    size: {
-                        value: { min: 1.0, max: 2.2 }
-                    },
-                    links: {
-                        enable: !reducedMotion,
-                        distance: 90,
-                        color: "#00ffff",
-                        opacity: 0.22,
-                        width: 0.6
-                    },
-                    move: {
-                        enable: true,
-                        speed: reducedMotion ? { min: 0.025, max: 0.10 } : { min: 0.05, max: 0.20 },
-                        direction: "none",
-                        outModes: {
-                            default: "out"
-                        }
-                    },
-                    shadow: {
-                        enable: true,
-                        blur: 5,
-                        color: "rgba(0, 255, 255, 0.25)"
-                    }
-                },
-                interactivity: {
-                    events: {
-                        onHover: {
-                            enable: true,
-                            mode: "parallax"
-                        }
-                    },
-                    modes: {
-                        parallax: {
-                            enable: true,
-                            force: 10,
-                            smooth: 10
-                        }
-                    }
-                },
-                // Responsive settings for mobile
-                responsive: [
-                    {
-                        maxWidth: 768,
-                        options: {
-                            particles: {
-                                number: {
-                                    value: 40
-                                },
-                                links: {
-                                    distance: 70
-                                }
-                            },
-                            interactivity: {
-                                events: {
-                                    onHover: { enable: false } // Disable parallax on mobile
-                                }
-                            }
-                        }
-                    }
-                ]
-            };
-
-            tsParticles.load("tsparticles", particleOptions);
-        });
-    </script>
 </body>
 </html>
