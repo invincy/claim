@@ -78,7 +78,8 @@
                 const panels = {
                     todo: document.getElementById('todoPanel'),
                     requirements: document.getElementById('requirementsPanel'),
-                    calculator: document.getElementById('calculatorPanel')
+                    calculator: document.getElementById('calculatorPanel'),
+                    links: document.getElementById('linksPanel')
                 };
                 const requirementsTypeSelect = document.getElementById('requirementsType');
                 const letRequirementsTable = document.getElementById('letRequirementsTable');
