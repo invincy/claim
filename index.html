@@ -8,29 +8,37 @@
     <link rel="stylesheet" href="assets/neon.css">
     <link id="themeStylesheet" rel="stylesheet" href="assets/style.css">
     <style>
-        /* --- LIC Yellow Theme Overrides --- */
-
-        /* 1. Particle System */
-        .particle-lines line {
-            stroke: #FFC700; /* A vibrant yellow */
-            filter: drop-shadow(0 0 4px rgba(255, 199, 0, 0.5));
-        }
-        .particle {
-            background: rgba(255, 199, 0, 0.6); /* yellow */
-            box-shadow: 0 0 6px rgba(255, 199, 0, 0.8); /* yellow glow */
-        }
-        .particle:nth-child(2n) {
-            background: rgba(255, 217, 82, 0.4); /* lighter yellow for variation */
-            box-shadow: 0 0 4px rgba(255, 217, 82, 0.6);
-        }
-        .particle:nth-child(3n) {
-            background: rgba(255, 199, 0, 0.3); /* main yellow, less opacity */
-            box-shadow: 0 0 3px rgba(255, 199, 0, 0.5);
+        :root {
+            --particles-opacity: 1;
         }
 
-        /* 2. Header Glow Effect */
+        body.dark-bg {
+            /* Faint radial gradient and star specks over the existing background */
+            background-color: #0b1422; /* Fallback color */
+            background-image:
+                /* Tiny star specks */
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.12) 0.5px, transparent 1px),
+                radial-gradient(circle at 75% 30%, rgba(255,255,255,0.1) 0.5px, transparent 1px),
+                radial-gradient(circle at 40% 50%, rgba(255,255,255,0.08) 1px, transparent 2px),
+                radial-gradient(circle at 90% 60%, rgba(255,255,255,0.11) 0.5px, transparent 1px),
+                radial-gradient(circle at 10% 15%, rgba(255,255,255,0.09) 1px, transparent 2px),
+                /* Faint radial gradient */
+                radial-gradient(ellipse at center, #07111d 0%, #0b1422 100%);
+            background-attachment: fixed;
+        }
+
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: var(--particles-opacity);
+        }
+
+        /* Header Glow Effect (yellow override) */
         .glow-text {
-            /* This overrides the default cyan glow to match the yellow text */
             text-shadow: 
                 0 0 8px rgba(255, 199, 0, 0.7),
                 0 0 16px rgba(255, 199, 0, 0.5);
@@ -44,12 +52,8 @@
     </style>
 </head>
 <body class="dark-bg min-h-screen">
-    <!-- Floating Particles -->
-    <div class="particles" id="particles">
-        <svg id="particleLines" class="particle-lines"></svg>
-    </div>
-    
-
+    <!-- tsParticles container -->
+    <div id="tsparticles"></div>
     <div class="max-w-7xl mx-auto relative z-10 p-4 md:p-6">
         <!-- Header -->
         <div class="text-center mb-8">
@@ -657,6 +661,98 @@
     </div>
 
     <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg hidden"></div>
+    <!-- IMPORTANT: You may need to remove the old particle animation logic from assets/script.js to prevent conflicts. -->
     <script src="assets/script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const particleOptions = {
+                fpsLimit: 60,
+                detectRetina: true,
+                pauseOnBlur: true,
+                particles: {
+                    number: {
+                        value: 120,
+                        density: {
+                            enable: true,
+                            area: 800
+                        }
+                    },
+                    color: {
+                        value: "#FFD34A"
+                    },
+                    shape: {
+                        type: "circle"
+                    },
+                    opacity: {
+                        value: 0.25
+                    },
+                    size: {
+                        value: { min: 1.0, max: 2.2 }
+                    },
+                    links: {
+                        enable: !reducedMotion,
+                        distance: 90,
+                        color: "#FFD34A",
+                        opacity: 0.22,
+                        width: 0.6,
+                    },
+                    move: {
+                        enable: true,
+                        speed: reducedMotion ? { min: 0.025, max: 0.10 } : { min: 0.05, max: 0.20 },
+                        direction: "none",
+                        outModes: {
+                            default: "out"
+                        }
+                    },
+                    shadow: {
+                        enable: true,
+                        blur: 5,
+                        color: "rgba(255, 211, 74, 0.25)"
+                    }
+                },
+                interactivity: {
+                    events: {
+                        onHover: {
+                            enable: true,
+                            mode: "parallax"
+                        }
+                    },
+                    modes: {
+                        parallax: {
+                            enable: true,
+                            force: 10,
+                            smooth: 10
+                        }
+                    }
+                },
+                // Responsive settings for mobile
+                responsive: [
+                    {
+                        maxWidth: 768,
+                        options: {
+                            particles: {
+                                number: {
+                                    value: 60
+                                },
+                                links: {
+                                    distance: 70
+                                }
+                            },
+                            interactivity: {
+                                events: {
+                                    onHover: { enable: false } // Disable parallax on mobile
+                                }
+                            }
+                        }
+                    }
+                ]
+            };
+
+            tsParticles.load("tsparticles", particleOptions);
+        });
+    </script>
 </body>
 </html>
