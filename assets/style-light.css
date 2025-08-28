@@ -49,8 +49,8 @@ img, video { max-width: 100%; height: auto; }
 .rounded-xl { border-radius: 0.75rem; }
 .text-lg{font-size: 1.125rem;line-height: 1.75rem;}
 .font-bold{font-weight: 700;}
-/* 3. Custom Light Theme Styles */
-body {
+/* 3. Custom LIC Yellow Theme Styles */
+body{
     background-color: #F5F5F5; /* background */
     color: #333333; /* text */
 }
@@ -62,7 +62,7 @@ body {
 }
 
 .matte-form {
-    background-color: #FFF9E6;
+    background-color: #FAF0E6; /* Lightest LIC Yellow */
     border: 1px solid #D9D9D9;
     box-shadow: 0 1px 2px rgba(0,0,0,0.08);
 }
@@ -74,12 +74,12 @@ body {
 }
 
 .btn-primary {
-    background-color: #0078D7;
+    background-color: #FFC857; /* LIC Yellow variant */
     color: #FFFFFF;
-    border: 1px solid #0078D7;
+    border: 1px solid #FFB347;
 }
 
-.btn-primary:hover {
+.btn-primary:hover{
     background-color: #005A9E;
     border: 1px solid #005A9E;
 }
@@ -156,14 +156,14 @@ body {
     position: relative;
     width: 50px;
 }
-
+/* Style adjustments for a cleaner look */
 .theme-switch-label::before {
-    background-color: #222;
-    border: 1px solid #888;
+    background-color: #D3D3D3; /* Light gray for better visibility */
+    border: 1px solid #A9A9A9; /* Darker gray for definition */
     border-radius: 12px;
     bottom: 0;
     content: "";
-    left: 0;
+    left: 0; /* Corrected from "-2px" */
     position: absolute;
     right: 0;
     top: 0;    
@@ -177,38 +177,20 @@ body {
     content: "";
     height: 20px;
     width: 20px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-    left: 1px;
+    background-color: #696969; /* Slightly darker for contrast */
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    left: 2px; /* Keep the position within the track */
     position: absolute;
     top: 2px;
-    transition: left 0.2s ease;
 }
 
 input[type="checkbox"]:checked + .theme-switch-label::before {
-    background-color: #007BFF;
-    border-color: #007BFF;
-    box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
+    background-color: #FFB347; /* Lighter, more vibrant yellow */
+    border-color: #FFA000; /* Slightly darker shade for the border */
+    box-shadow: 0 0 5px rgba(255, 160, 0, 0.6); /* Subtle glow effect */
 }
 
 input[type="checkbox"]:checked + .theme-switch-label::after {
-    left: 29px;
+    left: 28px; /* Adjust the position of the toggle */
 }
-
-/* Neon glow effect */
-.theme-switch-label::before {
-    transition: all 0.3s ease;
-}
-
-input[type="checkbox"]:checked + .theme-switch-label::before {
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7), 0 0 20px rgba(0, 123, 255, 0.4);
-}
-
-    
-
-input[type="checkbox"]:checked + .theme-switch-label::before {
-    background-color: #55c0ff;
-    }
-
-input[type="checkbox"]:checked + .theme-switch-label::after {
-    left: 28px;
-    }
