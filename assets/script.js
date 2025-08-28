@@ -1241,18 +1241,23 @@
          const themeStylesheet = document.getElementById('themeStylesheet');
          let currentTheme = localStorage.getItem('theme') || 'dark';
 
+         themeToggle.checked = currentTheme === 'light';
+
          function setTheme(theme) {
              if (theme === 'light') {
                  themeStylesheet.setAttribute('href', 'assets/style-light.css'); // Link to your light theme CSS
                  document.body.classList.remove('dark-bg');
+                 localStorage.setItem('theme', 'light');
              } else {
                  themeStylesheet.setAttribute('href', 'assets/style.css');
                  document.body.classList.add('dark-bg');
+                  localStorage.setItem('theme', 'dark');
              }
          }
 
          themeToggle.addEventListener('change', () => {
-             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-             localStorage.setItem('theme', currentTheme);
-             setTheme(currentTheme);
+             setTheme(themeToggle.checked ? 'light' : 'dark');
          });
+
+         // Set initial theme on page load
+         setTheme(currentTheme);

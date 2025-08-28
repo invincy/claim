@@ -8,11 +8,11 @@
     <link id="themeStylesheet" rel="stylesheet" href="assets/style.css">
     <style>
         /* Custom styles removed to revert to a more minimal, default theme. */
-        /* place the toggle here to overwrite the style.css and have it on top right */
-        #theme-toggle {
-            position: absolute;
+         #theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
         }
-    </style>
 </head>
 <body class="dark-bg min-h-screen">
     <!-- Time and Date Display -->
@@ -20,9 +20,9 @@
     <div id="date" class="text-right text-sm text-gray-300"></div>
 
         <!-- Theme Toggle Switch -->
-        <div id="theme-toggle" class='absolute top-4 left-4 z-50'>
+        <div id="theme-toggle" class='z-50'>
             <input type="checkbox" id="themeToggle" class="hidden">
-            <label for="themeToggle" class="theme-switch-label"></label>
+            <label for="themeToggle" class="theme-switch-label"></label></div>
     <!-- Floating Particles (Offline Version) -->
     <div class="particles" id="particles">
         <svg id="particleLines" class="particle-lines"></svg>
