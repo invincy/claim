@@ -74,20 +74,19 @@
             const toolsPanel = document.querySelector('.dash-right');
             if (toolsPanel) {
                 const tabs = toolsPanel.querySelectorAll('.tool-tab');
-        const panels = {
-            requirements: document.getElementById('requirementsPanel'),
-            calculator: document.getElementById('calculatorPanel'),
-            notes: document.getElementById('notesPanel')
-        };
-        const notesTextarea = document.getElementById('notesTextarea');
-        const requirementsTypeSelect = document.getElementById('requirementsType');
-        const letRequirementsTable = document.getElementById('letRequirementsTable');
+                const panels = {
+                    todo: document.getElementById('todoPanel'),
+                    requirements: document.getElementById('requirementsPanel'),
+                    calculator: document.getElementById('calculatorPanel')
+                };
+                const requirementsTypeSelect = document.getElementById('requirementsType');
+                const letRequirementsTable = document.getElementById('letRequirementsTable');
 
-        // 1. Tab Switching Logic
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Deactivate all tabs
-                tabs.forEach(t => t.classList.remove('active-tab'));
+                // 1. Tab Switching Logic
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Deactivate all tabs
+                        tabs.forEach(t => t.classList.remove('active-tab'));
                 // Hide all panels
                 Object.values(panels).forEach(panel => panel && panel.classList.add('hidden'));
 
@@ -98,24 +97,150 @@
                 if (panels[tabName]) {
                     panels[tabName].classList.remove('hidden');
                 }
-            });
-        });
+                    });
+                });
 
-        // 2. Requirements Dropdown Logic (placeholder for now)
-        if (requirementsTypeSelect && letRequirementsTable) {
-            requirementsTypeSelect.addEventListener('change', (e) => {
-                letRequirementsTable.style.display = e.target.value === 'LET' ? 'block' : 'none';
-            });
-        }
+                // 2. To-Do List Logic
+                const todoInput = document.getElementById('todoInput');
+                const addTodoBtn = document.getElementById('addTodoBtn');
+                const todoList = document.getElementById('todoList');
 
-        // 3. Notes Textarea Autosave to localStorage
-        if (notesTextarea) {
-            // Load saved notes on page load
-            notesTextarea.value = localStorage.getItem('dashboard_notes') || '';
-            // Save notes on input
-            notesTextarea.addEventListener('input', () => localStorage.setItem('dashboard_notes', notesTextarea.value));
-        }
-    }
+                let todos = JSON.parse(localStorage.getItem('lic_todos')) || [];
+
+                const saveTodos = () => {
+                    localStorage.setItem('lic_todos', JSON.stringify(todos));
+                };
+
+                const renderTodos = () => {
+                    todoList.innerHTML = '';
+                    if (todos.length === 0) {
+                        todoList.innerHTML = '<li class="text-gray-500 text-center py-4">No tasks yet.</li>';
+                        return;
+                    }
+                    todos.forEach((todo, index) => {
+                        const li = document.createElement('li');
+                        li.className = `option-card flex items-center justify-between p-3 rounded-lg ${todo.completed ? 'opacity-50' : ''}`;
+                        li.innerHTML = `
+                            <div class="flex items-center">
+                                <input type="checkbox" data-index="${index}" class="checkbox-modern mr-3" ${todo.completed ? 'checked' : ''}>
+                                <span class="font-medium text-gray-300 ${todo.completed ? 'line-through' : ''}">${todo.text}</span>
+                            </div>
+                            <button data-index="${index}" class="btn-danger text-xs px-2 py-1 rounded-md">🗑️</button>
+                        `;
+                        todoList.appendChild(li);
+                    });
+                };
+
+                addTodoBtn.addEventListener('click', () => {
+                    const text = todoInput.value.trim();
+                    if (text) {
+                        todos.push({ text, completed: false });
+                        todoInput.value = '';
+                        saveTodos();
+                        renderTodos();
+                    }
+                });
+
+                todoList.addEventListener('click', (e) => {
+                    const index = e.target.dataset.index;
+                    if (e.target.tagName === 'BUTTON') { // Delete
+                        todos.splice(index, 1);
+                        saveTodos();
+                        renderTodos();
+                    } else if (e.target.type === 'checkbox') { // Toggle complete
+                        todos[index].completed = e.target.checked;
+                        saveTodos();
+                        renderTodos();
+                    }
+                });
+
+                renderTodos();
+
+                // 3. Requirements Dropdown Logic
+                if (requirementsTypeSelect && letRequirementsTable) {
+                    requirementsTypeSelect.addEventListener('change', (e) => {
+                        letRequirementsTable.style.display = e.target.value === 'LET' ? 'block' : 'none';
+                    });
+                }
+
+                // 4. Premium Calculator Logic
+                const calculateBtn = document.getElementById('calculatePremiumBtn');
+                calculateBtn.addEventListener('click', () => {
+                    const plan = document.querySelector('input[name="plan"]:checked').value;
+                    const mode = document.querySelector('input[name="mode"]:checked').value;
+                    const sa = parseFloat(document.getElementById('saInput').value) * 1000;
+                    const tabularPremium = parseFloat(document.getElementById('tabularPremiumInput').value);
+                    const term = parseInt(document.getElementById('termInput').value);
+
+                    if (isNaN(sa) || isNaN(tabularPremium) || isNaN(term) || sa <= 0 || tabularPremium <= 0 || term <= 0) {
+                        showToast('Please fill all calculator fields with valid numbers.');
+                        return;
+                    }
+
+                    let breakdown = [];
+                    let rate = tabularPremium;
+
+                    // Step 1: Mode Rebate
+                    let modeRebateFactor = 1;
+                    if (mode === 'YLY') {
+                        modeRebateFactor = 0.97;
+                        breakdown.push(`Mode Rebate (YLY 3%): ${tabularPremium.toFixed(2)} * 0.97 = ${(tabularPremium * 0.97).toFixed(2)}`);
+                    } else if (mode === 'HLY') {
+                        modeRebateFactor = 0.985;
+                        breakdown.push(`Mode Rebate (HLY 1.5%): ${tabularPremium.toFixed(2)} * 0.985 = ${(tabularPremium * 0.985).toFixed(2)}`);
+                    }
+                    rate *= modeRebateFactor;
+
+                    // Step 2: S.A. Rebate (Plan 179 only)
+                    if (plan === '179') {
+                        let saRebate = 0;
+                        if (sa > 95000 && sa <= 195000) {
+                            saRebate = 5;
+                        } else if (sa > 195000) {
+                            saRebate = 7.5;
+                        }
+                        if (saRebate > 0) {
+                            breakdown.push(`S.A. Rebate (Plan 179): ${rate.toFixed(2)} - ${saRebate} = ${(rate - saRebate).toFixed(2)}`);
+                            rate -= saRebate;
+                        }
+                    }
+
+                    // Step 3: Base Premium
+                    const basePremium = rate * (sa / 1000);
+                    breakdown.push(`Base Premium: ${rate.toFixed(4)} * ${sa/1000} = ${basePremium.toFixed(2)}`);
+
+                    // Step 4: Modal Premium
+                    let modalPremium = basePremium;
+                    let paymentsPerYear = 1;
+                    if (mode === 'HLY') { paymentsPerYear = 2; }
+                    if (mode === 'QLY') { paymentsPerYear = 4; }
+                    if (mode === 'MLY') { paymentsPerYear = 12; }
+                    modalPremium = basePremium / paymentsPerYear;
+
+                    // Step 5: Total Premium
+                    const totalPremium = modalPremium * term * paymentsPerYear;
+
+                    // Display results
+                    document.getElementById('modalPremiumResult').textContent = `₹ ${modalPremium.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                    document.getElementById('totalPremiumResult').textContent = `₹ ${totalPremium.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                    document.getElementById('calculationBreakdown').innerHTML = breakdown.join('<br>');
+                    document.getElementById('premiumResult').classList.remove('hidden');
+                });
+
+                // Custom radio button styling logic
+                document.querySelectorAll('.option-card input[type="radio"]').forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        // Find all radios in the same group
+                        document.querySelectorAll(`input[name="${radio.name}"]`).forEach(r => {
+                            r.parentElement.classList.remove('selected');
+                        });
+                        // Add selected class to the parent of the checked radio
+                        if (radio.checked) {
+                            radio.parentElement.classList.add('selected');
+                        }
+                    });
+                });
+            }
         
         // Collapsible functionality
         document.querySelectorAll('.collapsible-header').forEach(header => {
