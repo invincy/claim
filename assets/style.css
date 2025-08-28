@@ -200,10 +200,10 @@ img, video { max-width: 100%; height: auto; }
     position: absolute;
     width: 2px;
     height: 2px;
-    background: rgba(0, 255, 255, 0.6);
+    background: rgba(0, 255, 255, 0.7);
     border-radius: 50%;
     animation: float 6s infinite linear;
-    box-shadow: 0 0 6px rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 8px 1px rgba(0, 255, 255, 0.9);
 }
 
 @keyframes float {
@@ -225,20 +225,20 @@ img, video { max-width: 100%; height: auto; }
 
 .particle:nth-child(2n) {
     animation-duration: 8s;
-    background: rgba(100, 200, 255, 0.4);
-    box-shadow: 0 0 4px rgba(100, 200, 255, 0.6);
+    background: rgba(192, 128, 255, 0.6);
+    box-shadow: 0 0 7px 1px rgba(192, 128, 255, 0.8);
 }
 
 .particle:nth-child(3n) {
     animation-duration: 10s;
-    background: rgba(0, 150, 255, 0.3);
-    box-shadow: 0 0 3px rgba(0, 150, 255, 0.5);
+    background: rgba(255, 150, 50, 0.5);
+    box-shadow: 0 0 6px 1px rgba(255, 150, 50, 0.7);
 }
 
 .particle-lines line {
-    stroke: rgba(0, 255, 255, 0.1);
+    stroke: rgba(173, 216, 230, 0.15);
     stroke-width: 0.5px;
-    filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.2));
+    filter: drop-shadow(0 0 3px rgba(173, 216, 230, 0.4));
 }
 
 .matte-card { 
@@ -518,23 +518,26 @@ img, video { max-width: 100%; height: auto; }
 .glow-text {
     text-shadow: 
         0 0 10px rgba(0, 255, 255, 0.8),
-        0 0 20px rgba(0, 255, 255, 0.6),
-        0 0 30px rgba(0, 255, 255, 0.4);
-    animation: textGlow 2s ease-in-out infinite alternate;
+        0 0 25px rgba(0, 255, 255, 0.7),
+        0 0 40px rgba(0, 255, 255, 0.5),
+        0 0 70px rgba(0, 255, 255, 0.2);
+    animation: textGlow 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes textGlow {
-    0% {
+    from {
         text-shadow: 
             0 0 10px rgba(0, 255, 255, 0.8),
             0 0 20px rgba(0, 255, 255, 0.6),
-            0 0 30px rgba(0, 255, 255, 0.4);
+            0 0 30px rgba(0, 255, 255, 0.4),
+            0 0 50px rgba(0, 255, 255, 0.2);
     }
-    100% {
+    to {
         text-shadow: 
             0 0 15px rgba(0, 255, 255, 1),
-            0 0 25px rgba(0, 255, 255, 0.8),
-            0 0 35px rgba(0, 255, 255, 0.6);
+            0 0 30px rgba(0, 255, 255, 0.8),
+            0 0 45px rgba(0, 255, 255, 0.6),
+            0 0 80px rgba(0, 255, 255, 0.4);
     }
 }
 

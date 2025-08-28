@@ -2,7 +2,7 @@
 
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 25; // Reduced for a cleaner, more minimal header animation
+            const particleCount = 200; // Increased for a "galaxy" effect
             const particles = [];
 
             for (let i = 0; i < particleCount; i++) {
@@ -29,7 +29,7 @@
         function createConnections(container, particles) {
             const svg = document.getElementById('particleLines');
             const connections = [];
-            const clusterCount = 2; // Reduced for a cleaner, more minimal header animation
+            const clusterCount = 25; // Increased for a "constellation" effect
 
             for (let i = 0; i < clusterCount; i++) {
                 const clusterSize = Math.random() < 0.5 ? 2 : 3;
