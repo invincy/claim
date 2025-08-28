@@ -68,8 +68,9 @@
         // Initialize particles when page loads
 
         document.addEventListener('DOMContentLoaded', function() {
-            const { container, particles } = createParticles();
-            createConnections(container, particles);
+            // The particle animation can be distracting. It's disabled as per the new design request.
+            // const { container, particles } = createParticles();
+            // createConnections(container, particles);
             
             const toolsPanel = document.querySelector('.dash-right');
             if (toolsPanel) {
