@@ -68,7 +68,7 @@
         // Initialize particles when page loads
 
         document.addEventListener('DOMContentLoaded', function() {
-rnet is             // Re-enabled the local, offline-friendly particle animation.
+            // Re-enabled the local, offline-friendly particle animation.
             const { container, particles } = createParticles();
             createConnections(container, particles);
             
