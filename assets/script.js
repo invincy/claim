@@ -454,6 +454,38 @@
 
         }
 
+        // Centralized event handling for all tables using event delegation
+        function setupTableEventListeners() {
+            const tables = {
+                'activeDeathClaimsTable': { openFn: openCase, removeFn: removeRow },
+                'activeSpecialCasesTable': { openFn: openSpecialCase, removeFn: removeSpecialRow },
+                'completedDeathClaimsTable': { removeFn: removeCompletedRow },
+                'completedSpecialCasesTable': { removeFn: removeCompletedSpecialRow }
+            };
+
+            for (const tableId in tables) {
+                const tableElement = document.getElementById(tableId);
+                if (tableElement) {
+                    tableElement.addEventListener('click', (e) => {
+                        const row = e.target.closest('tr');
+                        if (!row || !row.dataset.policyNo) return;
+
+                        const policyNo = row.dataset.policyNo;
+                        const config = tables[tableId];
+
+                        // Check if a remove button was clicked
+                        if (e.target.closest('.btn-remove')) {
+                            e.stopPropagation();
+                            if (config.removeFn) config.removeFn(e.target);
+                        } 
+                        // Otherwise, treat the click as an intent to open/view
+                        else if (config.openFn) {
+                            config.openFn(policyNo);
+                        }
+                    });
+                }
+            }
+        }
         // Load data from localStorage
         function loadFromStorage() {
             // Load active death claims
@@ -569,65 +601,48 @@
                 saveToStorage();
 
                 if (existingRow) {
-                    // Update existing row
-                    existingRow.innerHTML = `
-                        <td class="px-6 py-4 font-semibold text-gray-300">${policyNo}</td>
-                        <td class="px-6 py-4 font-semibold text-gray-300">${name}</td>
-                        <td class="px-6 py-4 font-semibold text-gray-300">${type}</td>
-                        <td class="px-6 py-4 font-semibold text-gray-300">${issue.length > 50 ? issue.substring(0, 50) + '...' : issue}</td>
-                        <td class="px-6 py-4">
-                            <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="event.stopPropagation(); removeSpecialRow(this)">
-                                Remove
-                            </button>
-                        </td>
-                    `;
-                    existingRow.className = 'lic-table-row border-t transition-all duration-300';
-                    existingRow.style.cursor = 'pointer';
-                    existingRow.onclick = function() { openSpecialCase(this); };
+                    updateSpecialCaseRow(existingRow, policyNo, name, type, issue);
                 } else {
-                    // Add new row
-                    const row = document.createElement('tr');
-                    row.className = 'lic-table-row border-t transition-all duration-300';
-                    row.style.cursor = 'pointer';
-                    row.innerHTML = `
-                        <td class="px-6 py-4 font-semibold text-gray-300">${policyNo}</td>
-                        <td class="px-6 py-4 font-semibold text-gray-300">${name}</td>
-                        <td class="px-6 py-4 font-semibold text-gray-300">${type}</td>
-                        <td class="px-6 py-4 font-semibold text-gray-300">${issue.length > 50 ? issue.substring(0, 50) + '...' : issue}</td>
-                        <td class="px-6 py-4">
-                            <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="event.stopPropagation(); removeSpecialRow(this)">
-                                Remove
-                            </button>
-                        </td>
-                    `;
-                    row.onclick = function() { openSpecialCase(this); };
-                    tableBody.appendChild(row);
-
+                    const newRow = createSpecialCaseRow(policyNo, name, type, issue);
+                    tableBody.appendChild(newRow);
                 }
 
                 showToast('Special case saved successfully!');
-
             }
 
             specialCaseForm.classList.add('hidden');
             resetSpecialForm();
         });
 
-        function openCase(row) {
-            const cells = row.querySelectorAll('td');
-            
-            // Extract data from the row
-            const policyNo = cells[0].textContent;
-            const name = cells[1].textContent;
-            const claimType = cells[2].textContent;
-            const stage = cells[3].textContent;
+        function createSpecialCaseRow(policyNo, name, type, issue) {
+            const row = document.createElement('tr');
+            row.className = 'dark-table-row border-t transition-all duration-300';
+            row.style.cursor = 'pointer';
+            row.dataset.policyNo = policyNo;
+            updateSpecialCaseRow(row, policyNo, name, type, issue);
+            return row;
+        }
+
+        function updateSpecialCaseRow(row, policyNo, name, type, issue) {
+            row.innerHTML = `
+                <td class="px-6 py-4 font-semibold text-gray-300">${policyNo}</td>
+                <td class="px-6 py-4 font-semibold text-gray-300">${name}</td>
+                <td class="px-6 py-4 font-semibold text-gray-300">${type}</td>
+                <td class="px-6 py-4 font-semibold text-gray-300">${issue.length > 50 ? issue.substring(0, 50) + '...' : issue}</td>
+                <td class="px-6 py-4"><button class="btn-danger btn-remove px-4 py-2 rounded-lg text-sm font-bold">Remove</button></td>
+            `;
+        }
+
+        function openCase(policyNo) {
+            const caseData = savedCases[policyNo];
+            if (!caseData) return;
             
             // Show the form
             deathClaimForm.classList.remove('hidden');
             
             // Populate basic fields
             document.getElementById('policyNumber').value = policyNo;
-            document.getElementById('claimantName').value = name;
+            document.getElementById('claimantName').value = caseData.name;
             
             // Restore all saved data if exists
             if (savedCases[policyNo]) {
@@ -645,7 +660,7 @@
             }
             
             // Select the claim type
-            const claimTypeRadio = document.querySelector(`input[name="claimType"][value="${claimType}"]`);
+            const claimTypeRadio = document.querySelector(`input[name="claimType"][value="${caseData.claimType}"]`);
             if (claimTypeRadio) {
                 claimTypeRadio.checked = true;
                 claimTypeRadio.dispatchEvent(new Event('change'));
@@ -690,15 +705,7 @@
             saveToStorage();
         }
 
-        function openSpecialCase(row) {
-            const cells = row.querySelectorAll('td');
-            
-            // Extract data from the row
-            const policyNo = cells[0].textContent;
-            const name = cells[1].textContent;
-            const type = cells[2].textContent;
-            const issue = cells[3].textContent;
-            
+        function openSpecialCase(policyNo) {
             // Show the form
             specialCaseForm.classList.remove('hidden');
             
@@ -996,13 +1003,9 @@
                     completedRow.innerHTML = `
                         <td class="px-6 py-4 font-semibold text-gray-300">${policyNo}</td>
                         <td class="px-6 py-4 font-semibold text-gray-300">${name}</td>
-                        <td class="px-6 py-4 font-semibold text-gray-300">${selectedType.value}</td>
+                        <td class="px-6 py-4 font-semibold text-gray-300">${selectedType ? selectedType.value : 'N/A'}</td>
                         <td class="px-6 py-4 font-semibold text-gray-300">${new Date().toLocaleDateString()}</td>
-                        <td class="px-6 py-4">
-                            <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="removeCompletedRow(this)">
-                                Remove
-                            </button>
-                        </td>
+                        <td class="px-6 py-4"><button class="btn-danger btn-remove px-4 py-2 rounded-lg text-sm font-bold">Remove</button></td>
                     `;
                     completedTableBody.appendChild(completedRow);
 
@@ -1050,7 +1053,9 @@
             const formData = {
                 commencementDate: document.getElementById('commencementDate').value,
                 deathDate: document.getElementById('deathDate').value,
-                query: document.getElementById('queryText').value
+                query: document.getElementById('queryText').value,
+                name: name,
+                claimType: selectedType.value
             };
             savedCases[policyNo] = formData;
 
@@ -1082,45 +1087,13 @@
                 }
             });
 
-
             const stage = getClaimStage();
 
-
             if (existingRow) {
-                // Update existing row
-                existingRow.innerHTML = `
-                    <td class="px-6 py-4 font-semibold text-gray-300">${policyNo}</td>
-                    <td class="px-6 py-4 font-semibold text-gray-300">${name}</td>
-                    <td class="px-6 py-4 font-semibold text-gray-300">${selectedType.value}</td>
-                    <td class="px-6 py-4 font-semibold text-gray-300">${stage}</td>
-                    <td class="px-6 py-4">
-                        <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="event.stopPropagation(); removeRow(this)">
-                            Remove
-                        </button>
-                    </td>
-                `;
-                existingRow.className = 'dark-table-row border-t transition-all duration-300';
-                existingRow.style.cursor = 'pointer';
-                existingRow.onclick = function() { openCase(this); };
+                updateDeathClaimRow(existingRow, policyNo, name, selectedType.value, stage);
             } else {
-                // Add new row
-                const row = document.createElement('tr');
-                row.className = 'dark-table-row border-t transition-all duration-300';
-                row.style.cursor = 'pointer';
-                row.innerHTML = `
-                    <td class="px-6 py-4 font-semibold text-gray-300">${policyNo}</td>
-                    <td class="px-6 py-4 font-semibold text-gray-300">${name}</td>
-                    <td class="px-6 py-4 font-semibold text-gray-300">${selectedType.value}</td>
-                    <td class="px-6 py-4 font-semibold text-gray-300">${stage}</td>
-                    <td class="px-6 py-4">
-                        <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="event.stopPropagation(); removeRow(this)">
-                            Remove
-                        </button>
-                    </td>
-                `;
-                row.onclick = function() { openCase(this); };
-
-                tableBody.appendChild(row);
+                const newRow = createDeathClaimRow(policyNo, name, selectedType.value, stage);
+                tableBody.appendChild(newRow);
             }
 
             saveToStorage();
@@ -1130,7 +1103,24 @@
             resetForm();
         });
 
+        function createDeathClaimRow(policyNo, name, claimType, stage) {
+            const row = document.createElement('tr');
+            row.className = 'dark-table-row border-t transition-all duration-300';
+            row.style.cursor = 'pointer';
+            row.dataset.policyNo = policyNo;
+            updateDeathClaimRow(row, policyNo, name, claimType, stage);
+            return row;
+        }
 
+        function updateDeathClaimRow(row, policyNo, name, claimType, stage) {
+            row.innerHTML = `
+                <td class="px-6 py-4 font-semibold text-gray-300">${policyNo}</td>
+                <td class="px-6 py-4 font-semibold text-gray-300">${name}</td>
+                <td class="px-6 py-4 font-semibold text-gray-300">${claimType}</td>
+                <td class="px-6 py-4 font-semibold text-gray-300">${stage}</td>
+                <td class="px-6 py-4"><button class="btn-danger btn-remove px-4 py-2 rounded-lg text-sm font-bold">Remove</button></td>
+            `;
+        }
 
         function getClaimStage() {
             if (document.getElementById('paymentDone').checked) return 'Payment Done';
@@ -1194,4 +1184,5 @@
         // Initial Load
         loadFromStorage();
         updateCounters();
+        setupTableEventListeners();
     });
