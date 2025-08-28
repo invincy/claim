@@ -1236,28 +1236,3 @@
         addSearchFunctionality('deathClaimSearch', 'activeDeathClaimsTable', '— No claims match your search', '— No active death claims');
         addSearchFunctionality('specialCaseSearch', 'activeSpecialCasesTable', '— No special cases match your search', '— No active special cases');
     });
-         // Theme toggle
-         const themeToggle = document.getElementById('themeToggle');
-         const themeStylesheet = document.getElementById('themeStylesheet');
-         let currentTheme = localStorage.getItem('theme') || 'dark';
-
-         themeToggle.checked = currentTheme === 'light';
-
-         function setTheme(theme) {
-             if (theme === 'light') {
-                 themeStylesheet.setAttribute('href', 'assets/style-light.css'); // Link to your light theme CSS
-                 document.body.classList.remove('dark-bg');
-                 localStorage.setItem('theme', 'light');
-             } else {
-                 themeStylesheet.setAttribute('href', 'assets/style.css');
-                 document.body.classList.add('dark-bg');
-                  localStorage.setItem('theme', 'dark');
-             }
-         }
-
-         themeToggle.addEventListener('change', () => {
-             setTheme(themeToggle.checked ? 'light' : 'dark');
-         });
-
-         // Set initial theme on page load
-         setTheme(currentTheme);
