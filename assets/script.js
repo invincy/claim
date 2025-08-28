@@ -70,7 +70,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Re-enabled the local, offline-friendly particle animation.
             const { container, particles } = createParticles();
-            createConnections(container, particles);
+            //createConnections(container, particles);
             
             const toolsPanel = document.querySelector('.dash-right');
             if (toolsPanel) {
