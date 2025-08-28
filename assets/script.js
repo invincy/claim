@@ -184,9 +184,17 @@
 
                     // Step 1: Mode Rebate
                     let modeRebateFactor = 1;
-                    if (mode === 'YLY') {
+                     if (plan === '179') {
+                        if (mode === 'YLY') {
+                        modeRebateFactor = 0.98;
+                        breakdown.push(`Mode Rebate (YLY 2%): ${tabularPremium.toFixed(2)} * 0.98 = ${(tabularPremium * 0.98).toFixed(2)}`);
+                    } else if (mode === 'HLY') {
+                        modeRebateFactor = 0.99;
+                        breakdown.push(`Mode Rebate (HLY 1%): ${tabularPremium.toFixed(2)} * 0.99 = ${(tabularPremium * 0.99).toFixed(2)}`);
+                    }
+                     }else {
+                         if (mode === 'YLY') {
                         modeRebateFactor = 0.97;
-                        breakdown.push(`Mode Rebate (YLY 3%): ${tabularPremium.toFixed(2)} * 0.97 = ${(tabularPremium * 0.97).toFixed(2)}`);
                     } else if (mode === 'HLY') {
                         modeRebateFactor = 0.985;
                         breakdown.push(`Mode Rebate (HLY 1.5%): ${tabularPremium.toFixed(2)} * 0.985 = ${(tabularPremium * 0.985).toFixed(2)}`);
