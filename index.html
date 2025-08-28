@@ -8,47 +8,7 @@
     <link rel="stylesheet" href="assets/neon.css">
     <link id="themeStylesheet" rel="stylesheet" href="assets/style.css">
     <style>
-        :root {
-            --particles-opacity: 1;
-        }
-
-        body.dark-bg {
-            /* Faint radial gradient and star specks over the existing background */
-            background-color: #0b1422; /* Fallback color */
-            background-image:
-                /* Tiny star specks */
-                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.12) 0.5px, transparent 1px),
-                radial-gradient(circle at 75% 30%, rgba(255,255,255,0.1) 0.5px, transparent 1px),
-                radial-gradient(circle at 40% 50%, rgba(255,255,255,0.08) 1px, transparent 2px),
-                radial-gradient(circle at 90% 60%, rgba(255,255,255,0.11) 0.5px, transparent 1px),
-                radial-gradient(circle at 10% 15%, rgba(255,255,255,0.09) 1px, transparent 2px),
-                /* Faint radial gradient */
-                radial-gradient(ellipse at center, #07111d 0%, #0b1422 100%);
-            background-attachment: fixed;
-        }
-
-        #tsparticles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: var(--particles-opacity);
-        }
-
-        /* Header Glow Effect (yellow override) */
-        .glow-text {
-            text-shadow: 
-                0 0 8px rgba(255, 199, 0, 0.7),
-                0 0 16px rgba(255, 199, 0, 0.5);
-            animation: textGlowYellow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes textGlowYellow {
-            from { text-shadow: 0 0 8px rgba(255, 199, 0, 0.7), 0 0 16px rgba(255, 199, 0, 0.5); }
-            to { text-shadow: 0 0 12px rgba(255, 199, 0, 0.8), 0 0 24px rgba(255, 199, 0, 0.6); }
-        }
+        /* Custom styles removed to revert to a more minimal, default theme. */
     </style>
 </head>
 <body class="dark-bg min-h-screen">
@@ -57,8 +17,8 @@
     <div class="max-w-7xl mx-auto relative z-10 p-4 md:p-6">
         <!-- Header -->
         <div class="text-center mb-8">
-            <div class="glass-header rounded-2xl p-8 mx-auto max-w-3xl pulse-glow">
-                <h1 class="text-4xl font-bold text-yellow-400 mb-3 glow-text">🏢 LIC Claims Hub</h1>
+            <div class="glass-header rounded-2xl p-8 mx-auto max-w-3xl">
+                <h1 class="text-4xl font-bold text-cyan-300 mb-3 glow-text">🏢 LIC Claims Hub</h1>
             </div>
         </div>
 
@@ -79,8 +39,7 @@
                 </div>
         
         <!-- Special Case Form (Hidden by default) -->
-
-        <div id="specialCaseForm" class="hidden matte-form amber-glow rounded-3xl p-8 mb-8">
+        <div id="specialCaseForm" class="hidden matte-form rounded-3xl p-8 mb-8">
 
             <h3 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">⚡ Add Special Case</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -129,8 +88,7 @@
         </div>
 
         <!-- Death Claim Form (Hidden by default) -->
-
-        <div id="deathClaimForm" class="hidden matte-form red-glow rounded-3xl p-8 mb-8">
+        <div id="deathClaimForm" class="hidden matte-form rounded-3xl p-8 mb-8">
 
             <h3 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">💀 Death Claim Form</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -154,7 +112,7 @@
 
             <!-- Duration Display -->
 
-            <div id="durationDisplay" class="hidden mb-6 p-6 bg-gray-900/40 rounded-2xl border border-gray-700/40 red-glow backdrop-blur-sm">
+            <div id="durationDisplay" class="hidden mb-6 p-6 bg-gray-900/40 rounded-2xl border border-gray-700/40 backdrop-blur-sm">
                 <span class="font-bold text-gray-300">⏱️ Duration: </span>
                 <span id="durationText" class="font-bold text-gray-300 text-xl"></span>
             </div>
@@ -189,7 +147,7 @@
             <div id="workflowSections" class="hidden space-y-6 mb-8">
                 <!-- Check Nominee Section -->
 
-                <div class="workflow-section red-glow rounded-2xl">
+                <div class="workflow-section rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="checkNominee">
                         <span class="text-xl flex items-center gap-3">👥 Check Nominee</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
@@ -211,7 +169,7 @@
 
                 <!-- Documents Required Section -->
 
-                <div class="workflow-section red-glow rounded-2xl">
+                <div class="workflow-section rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="documentsRequired">
                         <span class="text-xl flex items-center gap-3">📄 Documents Required</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
@@ -278,7 +236,7 @@
 
                 <!-- Investigation Section -->
 
-                <div class="workflow-section red-glow rounded-2xl">
+                <div class="workflow-section rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="investigation">
                         <span class="text-xl flex items-center gap-3">🔍 Investigation</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
@@ -306,7 +264,7 @@
                                     <input type="date" id="investigationDate" class="dark-input w-full px-4 py-3 rounded-xl">
                                 </div>
 
-                                <div id="daysSinceAllotted" class="text-sm text-gray-300 hidden bg-gray-900/40 p-4 rounded-xl border border-gray-700/40 red-glow">
+                                <div id="daysSinceAllotted" class="text-sm text-gray-300 hidden bg-gray-900/40 p-4 rounded-xl border border-gray-700/40">
                                 <span class="font-semibold">⏰ Days since allotted: </span><span id="daysCount" class="font-bold text-gray-300 text-lg"></span>
 
                                 </div>
@@ -321,7 +279,7 @@
 
                 <!-- D.O. Decision Section (Early claims only) -->
 
-                <div id="doDecisionSection" class="workflow-section red-glow rounded-2xl hidden">
+                <div id="doDecisionSection" class="workflow-section rounded-2xl hidden">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="doDecision">
                         <span class="text-xl flex items-center gap-3">⚖️ D.O. Decision</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
@@ -333,7 +291,7 @@
                                 <label class="block text-sm font-bold text-gray-300 mb-3">📤 Date Sent to D.O.</label>
                                 <input type="date" id="doSentDate" class="dark-input w-full px-4 py-3 rounded-xl">
                             </div>
-                            <div id="daysSinceSent" class="text-sm text-gray-300 hidden bg-gray-900/40 p-4 rounded-xl border border-gray-700/40 red-glow">
+                            <div id="daysSinceSent" class="text-sm text-gray-300 hidden bg-gray-900/40 p-4 rounded-xl border border-gray-700/40">
                                 <span class="font-semibold">⏰ Days since sent: </span><span id="doSentDaysCount" class="font-bold text-gray-300 text-lg"></span>
                             </div>
 
@@ -347,7 +305,7 @@
 
                 <!-- Proceed for Payment Section -->
 
-                <div class="workflow-section red-glow rounded-2xl">
+                <div class="workflow-section rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="proceedPayment">
                         <span class="text-xl flex items-center gap-3">💰 Proceed for Payment</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
@@ -365,7 +323,7 @@
 
                 <!-- Query and Save Section -->
 
-                <div class="workflow-section red-glow rounded-2xl p-6 space-y-4">
+                <div class="workflow-section rounded-2xl p-6 space-y-4">
                     <div>
                         <label class="block text-lg font-bold text-gray-300 mb-3">📝 Notes</label>
                         <textarea id="queryText" rows="4" class="dark-input w-full px-4 py-3 rounded-xl" placeholder="Enter any queries or notes..."></textarea>
@@ -389,7 +347,7 @@
             <div class="space-y-6">
                 <!-- Active Death Claims -->
 
-                <div class="matte-card red-glow rounded-2xl">
+                <div class="matte-card rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="activeDeathClaims">
 
                         <span class="text-lg flex items-center gap-3">💀 Active Death Claims</span>
@@ -424,7 +382,7 @@
 
                 <!-- Active Special Cases -->
 
-                <div class="matte-card amber-glow rounded-2xl">
+                <div class="matte-card rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="activeSpecialCases">
 
                         <span class="text-lg flex items-center gap-3">⚡ Active Special Cases</span>
@@ -459,7 +417,7 @@
 
                 <!-- Completed Death Claims -->
 
-                <div class="matte-card green-glow rounded-2xl">
+                <div class="matte-card rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="completedDeathClaims">
 
                         <span class="text-lg flex items-center gap-3">✅ Completed Death Claims</span>
@@ -491,7 +449,7 @@
 
                 <!-- Completed Special Cases -->
 
-                <div class="matte-card green-glow rounded-2xl">
+                <div class="matte-card rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="completedSpecialCases">
 
                         <span class="text-lg flex items-center gap-3">🎯 Completed Special Cases</span>
@@ -669,6 +627,10 @@
             const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             const particleOptions = {
+                fullScreen: {
+                    enable: true,
+                    zIndex: 0
+                },
                 fpsLimit: 60,
                 detectRetina: true,
                 pauseOnBlur: true,
@@ -681,7 +643,7 @@
                         }
                     },
                     color: {
-                        value: "#FFD34A"
+                        value: "#00ffff"
                     },
                     shape: {
                         type: "circle"
@@ -695,9 +657,9 @@
                     links: {
                         enable: !reducedMotion,
                         distance: 90,
-                        color: "#FFD34A",
+                        color: "#00ffff",
                         opacity: 0.22,
-                        width: 0.6,
+                        width: 0.6
                     },
                     move: {
                         enable: true,
@@ -710,7 +672,7 @@
                     shadow: {
                         enable: true,
                         blur: 5,
-                        color: "rgba(255, 211, 74, 0.25)"
+                        color: "rgba(0, 255, 255, 0.25)"
                     }
                 },
                 interactivity: {
