@@ -236,9 +236,9 @@ img, video { max-width: 100%; height: auto; }
 }
 
 .particle-lines line {
-    stroke: rgba(0, 255, 255, 0.2);
-    stroke-width: 1;
-    filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.4));
+    stroke: rgba(0, 255, 255, 0.1);
+    stroke-width: 0.5px;
+    filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.2));
 }
 
 .matte-card { 
@@ -551,6 +551,18 @@ img, video { max-width: 100%; height: auto; }
     }
 }
 
+/* Monochrome icon treatment */
+.monochrome-icon {
+    display: inline-block;
+    filter: grayscale(1) brightness(2);
+    opacity: 0.8;
+}
+
+/* Prevent main title's icon from inheriting text-shadow */
+.glow-text .monochrome-icon {
+    text-shadow: none !important;
+}
+
 /* 4. Custom Layout Styles */
 
 /* Main grid layout */
@@ -558,6 +570,12 @@ img, video { max-width: 100%; height: auto; }
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 2rem;
+}
+
+.dash-left {
+    display: grid;
+    gap: 2rem;
+    align-content: start;
 }
 
 @media (min-width: 1024px) {
