@@ -570,6 +570,7 @@ img, video { max-width: 100%; height: auto; }
 
 /* Main grid layout */
 .dash-grid {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 2rem;
