@@ -551,18 +551,6 @@ img, video { max-width: 100%; height: auto; }
     }
 }
 
-/* Monochrome icon treatment */
-.monochrome-icon {
-    display: inline-block;
-    filter: grayscale(1) brightness(2);
-    opacity: 0.8;
-}
-
-/* Prevent main title's icon from inheriting text-shadow */
-.glow-text .monochrome-icon {
-    text-shadow: none !important;
-}
-
 /* 4. Custom Layout Styles */
 
 /* Main grid layout */

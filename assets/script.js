@@ -1182,8 +1182,49 @@
             doDecisionSection.classList.add('hidden');
         }
 
+        // NEW: Search functionality for tables
+        function addSearchFunctionality(inputId, tableId, noResultsText, defaultPlaceholderText) {
+            const searchInput = document.getElementById(inputId);
+            const tableBody = document.getElementById(tableId);
+            
+            if (!searchInput || !tableBody) return;
+
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const dataRows = tableBody.querySelectorAll('tr[data-policy-no]');
+                const placeholderRow = tableBody.querySelector('tr:not([data-policy-no])');
+                let visibleRows = 0;
+
+                dataRows.forEach(row => {
+                    const rowText = row.textContent.toLowerCase();
+                    if (rowText.includes(searchTerm)) {
+                        row.style.display = '';
+                        visibleRows++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                if (placeholderRow) {
+                    if (visibleRows > 0) {
+                        placeholderRow.style.display = 'none';
+                    } else { // No visible rows
+                        placeholderRow.style.display = '';
+                        if (dataRows.length > 0) { // Table has data, but search yielded no results
+                            placeholderRow.querySelector('td').textContent = noResultsText;
+                        } else { // Table is empty to begin with
+                            placeholderRow.querySelector('td').textContent = defaultPlaceholderText;
+                        }
+                    }
+                }
+            });
+        }
+
         // Initial Load
         loadFromStorage();
         updateCounters();
         setupTableEventListeners();
+        // Setup search after everything is loaded
+        addSearchFunctionality('deathClaimSearch', 'activeDeathClaimsTable', '— No claims match your search', '— No active death claims');
+        addSearchFunctionality('specialCaseSearch', 'activeSpecialCasesTable', '— No special cases match your search', '— No active special cases');
     });
