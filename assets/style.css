@@ -558,7 +558,6 @@ img, video { max-width: 100%; height: auto; }
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
     gap: 2rem;
-    align-items: start;
 }
 
 @media (min-width: 1024px) {
@@ -571,7 +570,15 @@ img, video { max-width: 100%; height: auto; }
         position: -webkit-sticky; /* For Safari */
         position: sticky;
         top: 1.5rem; /* Corresponds to Tailwind's `top-6` */
+        height: 100%; /* Make sticky container fill the grid cell height */
     }
+}
+
+/* New rule to make the tools panel stretch vertically and align content at the top */
+.tools-panel-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Tab styles for the tools panel */
