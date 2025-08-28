@@ -18,7 +18,7 @@
         <!-- Header -->
         <div class="text-center mb-8">
             <div class="glass-header rounded-2xl p-8 mx-auto max-w-3xl">
-                <h1 class="text-4xl font-bold text-cyan-300 mb-3 glow-text">🏢 LIC Claims Hub</h1>
+                <h1 class="text-4xl font-bold text-cyan-300 mb-3 glow-text">// LIC Claims Hub</h1>
             </div>
         </div>
 
@@ -30,10 +30,10 @@
                 <div class="glass-header rounded-2xl p-6 mb-8 mx-auto max-w-2xl">
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <button id="deathClaimBtn" class="btn-danger px-8 py-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2">
-                    💀 New Death Claim
+                    † New Death Claim
                 </button>
                 <button id="specialCaseBtn" class="btn-primary px-8 py-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2">
-                    ⚡ New Special Case
+                    * New Special Case
                 </button>
             </div>
                 </div>
@@ -41,18 +41,18 @@
         <!-- Special Case Form (Hidden by default) -->
         <div id="specialCaseForm" class="hidden matte-form rounded-3xl p-8 mb-8">
 
-            <h3 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">⚡ Add Special Case</h3>
+            <h3 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">* Add Special Case</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                    <label class="block text-sm font-bold text-gray-300 mb-3">📋 Policy Number</label>
+                    <label class="block text-sm font-bold text-gray-300 mb-3">Policy Number</label>
                     <input type="text" id="specialPolicyNumber" class="dark-input w-full px-4 py-3 rounded-xl font-medium">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-gray-300 mb-3">👤 Name</label>
+                    <label class="block text-sm font-bold text-gray-300 mb-3">Name</label>
                     <input type="text" id="specialName" class="dark-input w-full px-4 py-3 rounded-xl font-medium">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-gray-300 mb-3">🏷️ Type</label>
+                    <label class="block text-sm font-bold text-gray-300 mb-3">Type</label>
                     <select id="specialType" class="dark-input w-full px-4 py-3 rounded-xl font-medium">
                         <option value="">Select Type</option>
                         <option value="M/C">M/C</option>
@@ -149,7 +149,7 @@
 
                 <div class="workflow-section rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="checkNominee">
-                        <span class="text-xl flex items-center gap-3">👥 Check Nominee</span>
+                        <span class="text-xl flex items-center gap-3">Check Nominee</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
 
                     </button>
@@ -157,11 +157,11 @@
                         <div class="p-6 pt-0 space-y-4">
                             <label class="option-card flex items-center p-4 rounded-xl">
                                 <input type="checkbox" id="nomineeAvailable" class="checkbox-modern mr-4">
-                                <span class="font-semibold text-gray-300">✅ Nominee Available</span>
+                                <span class="font-semibold text-gray-300">✓ Nominee Available</span>
                             </label>
                             <label class="option-card flex items-center p-4 rounded-xl">
                                 <input type="checkbox" id="nomineeNotAvailable" class="checkbox-modern mr-4">
-                                <span class="font-semibold text-gray-300">❌ Nominee Not Available</span>
+                                <span class="font-semibold text-gray-300">✗ Nominee Not Available</span>
                             </label>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
 
                 <div class="workflow-section rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="documentsRequired">
-                        <span class="text-xl flex items-center gap-3">📄 Documents Required</span>
+                        <span class="text-xl flex items-center gap-3">Documents Required</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
 
                     </button>
@@ -179,12 +179,12 @@
                         <div class="p-6 pt-0 space-y-4">
                             <label class="option-card flex items-center p-4 rounded-xl">
                                 <input type="checkbox" id="deathClaimFormDocs" class="checkbox-modern mr-4">
-                                <span class="font-semibold text-gray-300">📋 Death Claim Form + Supporting Documents</span>
+                                <span class="font-semibold text-gray-300">Death Claim Form + Supporting Documents</span>
                             </label>
                             <div id="letFormsSection" class="hidden space-y-6">
                                 <label class="option-card flex items-center p-4 rounded-xl">
                                     <input type="checkbox" id="letForms" class="checkbox-modern mr-4">
-                                    <span class="font-semibold text-gray-300">⚖️ LET Forms (Legal Evidence of Title)</span>
+                                    <span class="font-semibold text-gray-300">LET Forms (Legal Evidence of Title)</span>
                                 </label>
                                 
                                 <!-- LET Form Requirements Table -->
@@ -192,14 +192,14 @@
                                   <div class="dark-table rounded-2xl border border-gray-600/30 shadow-2xl overflow-hidden">
                                     <div class="bg-gray-900/60 px-6 py-4 border-b border-gray-600/30">
 
-                                        <h4 class="font-bold text-white text-lg flex items-center gap-2">💰 LET Form Requirements based on NCAP</h4>
+                                        <h4 class="font-bold text-white text-lg flex items-center gap-2">LET Form Requirements based on NCAP</h4>
                                     </div>
                                     <div class="overflow-x-auto">
                                         <table class="w-full text-sm">
                                             <thead class="dark-table-header">
                                                 <tr>
-                                                    <th class="px-6 py-4 text-left font-bold text-gray-200 border-b border-gray-600/30">💵 NCAP Slab</th>
-                                                    <th class="px-6 py-4 text-left font-bold text-gray-200 border-b border-gray-600/30">📝 Required Forms</th>
+                                                    <th class="px-6 py-4 text-left font-bold text-gray-200 border-b border-gray-600/30">NCAP Slab</th>
+                                                    <th class="px-6 py-4 text-left font-bold text-gray-200 border-b border-gray-600/30">Required Forms</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="divide-y divide-gray-600/20">
@@ -238,7 +238,7 @@
 
                 <div class="workflow-section rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="investigation">
-                        <span class="text-xl flex items-center gap-3">🔍 Investigation</span>
+                        <span class="text-xl flex items-center gap-3">Investigation</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
 
                     </button>
@@ -247,30 +247,30 @@
                             <div class="space-y-3">
                                 <label class="option-card flex items-center p-4 rounded-xl">
                                     <input type="radio" id="investigationABM" name="investigationType" value="ABM(s)" class="radio-modern mr-4">
-                                    <span class="font-semibold text-gray-300">👨‍💼 ABM(s)</span>
+                                    <span class="font-semibold text-gray-300">ABM(s)</span>
                                 </label>
                                 <label class="option-card flex items-center p-4 rounded-xl">
                                     <input type="radio" id="investigationSrBM" name="investigationType" value="Sr. B.M." class="radio-modern mr-4">
-                                    <span class="font-semibold text-gray-300">👔 Sr. B.M.</span>
+                                    <span class="font-semibold text-gray-300">Sr. B.M.</span>
                                 </label>
                                 <label class="option-card flex items-center p-4 rounded-xl">
                                     <input type="radio" id="investigationDO" name="investigationType" value="D.O." class="radio-modern mr-4">
-                                    <span class="font-semibold text-gray-300">🏛️ D.O.</span>
+                                    <span class="font-semibold text-gray-300">D.O.</span>
                                 </label>
                             </div>
                             <div id="investigationDetails" class="hidden space-y-4">
                                 <div>
-                                    <label class="block text-sm font-bold text-gray-300 mb-3">📅 Date Investigation Allotted</label>
+                                    <label class="block text-sm font-bold text-gray-300 mb-3">Date Investigation Allotted</label>
                                     <input type="date" id="investigationDate" class="dark-input w-full px-4 py-3 rounded-xl">
                                 </div>
 
                                 <div id="daysSinceAllotted" class="text-sm text-gray-300 hidden bg-gray-900/40 p-4 rounded-xl border border-gray-700/40">
-                                <span class="font-semibold">⏰ Days since allotted: </span><span id="daysCount" class="font-bold text-gray-300 text-lg"></span>
+                                <span class="font-semibold">Days since allotted: </span><span id="daysCount" class="font-bold text-gray-300 text-lg"></span>
 
                                 </div>
                                 <label class="option-card flex items-center p-4 rounded-xl">
                                     <input type="checkbox" id="investigationReceived" class="checkbox-modern mr-4">
-                                    <span class="font-semibold text-gray-300">✅ Investigation Received</span>
+                                    <span class="font-semibold text-gray-300">✓ Investigation Received</span>
                                 </label>
                             </div>
                         </div>
@@ -281,23 +281,23 @@
 
                 <div id="doDecisionSection" class="workflow-section rounded-2xl hidden">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="doDecision">
-                        <span class="text-xl flex items-center gap-3">⚖️ D.O. Decision</span>
+                        <span class="text-xl flex items-center gap-3">D.O. Decision</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
 
                     </button>
                     <div id="doDecision" class="workflow-content">
                         <div class="p-6 pt-0 space-y-4">
                             <div>
-                                <label class="block text-sm font-bold text-gray-300 mb-3">📤 Date Sent to D.O.</label>
+                                <label class="block text-sm font-bold text-gray-300 mb-3">Date Sent to D.O.</label>
                                 <input type="date" id="doSentDate" class="dark-input w-full px-4 py-3 rounded-xl">
                             </div>
                             <div id="daysSinceSent" class="text-sm text-gray-300 hidden bg-gray-900/40 p-4 rounded-xl border border-gray-700/40">
-                                <span class="font-semibold">⏰ Days since sent: </span><span id="doSentDaysCount" class="font-bold text-gray-300 text-lg"></span>
+                                <span class="font-semibold">Days since sent: </span><span id="doSentDaysCount" class="font-bold text-gray-300 text-lg"></span>
                             </div>
 
                             <label class="option-card flex items-center p-4 rounded-xl">
                                 <input type="checkbox" id="doDecisionReceived" class="checkbox-modern mr-4">
-                                <span class="font-semibold text-gray-300">✅ D.O. Decision Received</span>
+                                <span class="font-semibold text-gray-300">✓ D.O. Decision Received</span>
                             </label>
                         </div>
                     </div>
@@ -307,7 +307,7 @@
 
                 <div class="workflow-section rounded-2xl">
                     <button class="workflow-header w-full text-left p-6 font-bold text-white rounded-2xl transition-all duration-300 flex items-center justify-between section-header" data-target="proceedPayment">
-                        <span class="text-xl flex items-center gap-3">💰 Proceed for Payment</span>
+                        <span class="text-xl flex items-center gap-3">Proceed for Payment</span>
                           <span class="transform transition-transform text-gray-300 text-2xl">▼</span>
 
                     </button>
@@ -315,7 +315,7 @@
                         <div class="p-6 pt-0">
                             <label class="option-card flex items-center p-4 rounded-xl">
                                 <input type="checkbox" id="paymentDone" class="checkbox-modern mr-4">
-                                <span class="font-semibold text-gray-300">✅ Payment Done</span>
+                                <span class="font-semibold text-gray-300">✓ Payment Done</span>
                             </label>
                         </div>
                     </div>
@@ -325,11 +325,11 @@
 
                 <div class="workflow-section rounded-2xl p-6 space-y-4">
                     <div>
-                        <label class="block text-lg font-bold text-gray-300 mb-3">📝 Notes</label>
+                        <label class="block text-lg font-bold text-gray-300 mb-3">Notes</label>
                         <textarea id="queryText" rows="4" class="dark-input w-full px-4 py-3 rounded-xl" placeholder="Enter any queries or notes..."></textarea>
                     </div>
                     <button id="saveProgress" class="btn-primary px-6 py-3 rounded-xl font-semibold text-sm">
-                        💾 Save Progress
+                        Save Progress
                     </button>
                 </div>
 
@@ -337,7 +337,7 @@
 
             <div class="flex gap-4">
                 <button id="cancelForm" class="btn-ghost px-6 py-3 rounded-xl font-semibold text-sm">
-                    ❌ Cancel
+                    Cancel
                 </button>
             </div>
         </div>
@@ -350,7 +350,7 @@
                 <div class="matte-card rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="activeDeathClaims">
 
-                        <span class="text-lg flex items-center gap-3">💀 Active Death Claims</span>
+                        <span class="text-lg flex items-center gap-3">† Active Death Claims</span>
                         <div class="flex items-center gap-4">
                             <span id="activeDeathClaimsCounter" class="counter-badge px-3 py-1 rounded-full text-sm font-bold">0</span>
                             <span class="transform transition-transform text-gray-300 text-xl">▼</span>
@@ -362,16 +362,16 @@
                                 <table class="w-full">
                                     <thead class="dark-table-header">
                                         <tr>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">📋 Policy No</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">👤 Name</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">🏷️ Type</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">📊 Stage</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">⚡ Action</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Policy No</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Name</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Type</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Stage</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="activeDeathClaimsTable">
                                         <tr>
-                                            <td colspan="5" class="px-6 py-12 text-center text-gray-400 font-medium text-lg">🔍 No active death claims</td>
+                                            <td colspan="5" class="px-6 py-12 text-center text-gray-400 font-medium text-lg">— No active death claims</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -385,7 +385,7 @@
                 <div class="matte-card rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="activeSpecialCases">
 
-                        <span class="text-lg flex items-center gap-3">⚡ Active Special Cases</span>
+                        <span class="text-lg flex items-center gap-3">* Active Special Cases</span>
                         <div class="flex items-center gap-4">
                             <span id="activeSpecialCasesCounter" class="counter-badge px-3 py-1 rounded-full text-sm font-bold">0</span>
                             <span class="transform transition-transform text-gray-300 text-xl">▼</span>
@@ -397,16 +397,16 @@
                                 <table class="w-full">
                                     <thead class="dark-table-header">
                                         <tr>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">📋 Policy No</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">👤 Name</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">🏷️ Type</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">📝 Issue</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">⚡ Action</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Policy No</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Name</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Type</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Issue</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="activeSpecialCasesTable">
                                         <tr>
-                                            <td colspan="5" class="px-6 py-12 text-center text-gray-400 font-medium text-lg">🔍 No active special cases</td>
+                                            <td colspan="5" class="px-6 py-12 text-center text-gray-400 font-medium text-lg">— No active special cases</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -420,7 +420,7 @@
                 <div class="matte-card rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="completedDeathClaims">
 
-                        <span class="text-lg flex items-center gap-3">✅ Completed Death Claims</span>
+                        <span class="text-lg flex items-center gap-3">✓ Completed Death Claims</span>
                         <span class="transform transition-transform text-gray-300 text-xl">▼</span>
                     </button>
                     <div id="completedDeathClaims" class="collapsible-content">
@@ -429,16 +429,16 @@
                                 <table class="w-full">
                                     <thead class="dark-table-header">
                                         <tr>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">📋 Policy No</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">👤 Name</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">🏷️ Type</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">📅 Completed Date</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">⚡ Action</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Policy No</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Name</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Type</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Completed Date</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="completedDeathClaimsTable">
                                         <tr>
-                                            <td colspan="5" class="px-6 py-12 text-center text-gray-400 font-medium text-lg">🎉 No completed death claims</td>
+                                            <td colspan="5" class="px-6 py-12 text-center text-gray-400 font-medium text-lg">— No completed death claims</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -452,7 +452,7 @@
                 <div class="matte-card rounded-2xl">
                     <button class="collapsible-header w-full text-left p-6 font-medium bg-gray-900/40 text-gray-200 hover:bg-gray-900/60 rounded-2xl transition-all duration-300 flex items-center justify-between backdrop-blur-sm" data-target="completedSpecialCases">
 
-                        <span class="text-lg flex items-center gap-3">🎯 Completed Special Cases</span>
+                        <span class="text-lg flex items-center gap-3">✓ Completed Special Cases</span>
                         <span class="transform transition-transform text-gray-300 text-xl">▼</span>
                     </button>
                     <div id="completedSpecialCases" class="collapsible-content">
@@ -461,16 +461,16 @@
                                 <table class="w-full">
                                     <thead class="dark-table-header">
                                         <tr>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">📋 Policy No</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">👤 Name</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">🏷️ Type</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">📝 Issue</th>
-                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">⚡ Action</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Policy No</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Name</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Type</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Issue</th>
+                                            <th class="px-6 py-4 text-left text-sm font-bold text-gray-200">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="completedSpecialCasesTable">
                                         <tr>
-                                            <td colspan="5" class="px-6 py-12 text-center text-gray-400 font-medium text-lg">🎉 No completed special cases</td>
+                                            <td colspan="5" class="px-6 py-12 text-center text-gray-400 font-medium text-lg">— No completed special cases</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -486,7 +486,7 @@
             <div class="dash-right">
                 <div class="dash-right-sticky-container">
                     <div class="glass-header rounded-2xl p-6">
-                        <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">🧰 Tools & Requirements</h3>
+                        <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">// Tools & Requirements</h3>
 
                         <!-- Tabs -->
                         <div class="flex border-b border-gray-700 mb-6">
@@ -518,14 +518,14 @@
                             <div id="letRequirementsTable">
                                 <div class="dark-table rounded-2xl border border-gray-600/30 shadow-2xl overflow-hidden">
                                     <div class="bg-gray-900/60 px-6 py-4 border-b border-gray-600/30">
-                                        <h4 class="font-bold text-white text-lg flex items-center gap-2">💰 LET Form Requirements based on NCAP</h4>
+                                        <h4 class="font-bold text-white text-lg flex items-center gap-2">LET Form Requirements based on NCAP</h4>
                                     </div>
                                     <div class="overflow-x-auto">
                                         <table class="w-full text-sm">
                                             <thead class="dark-table-header">
                                                 <tr>
-                                                    <th class="px-6 py-4 text-left font-bold text-gray-200 border-b border-gray-600/30">💵 NCAP Slab</th>
-                                                    <th class="px-6 py-4 text-left font-bold text-gray-200 border-b border-gray-600/30">📝 Required Forms</th>
+                                                    <th class="px-6 py-4 text-left font-bold text-gray-200 border-b border-gray-600/30">NCAP Slab</th>
+                                                    <th class="px-6 py-4 text-left font-bold text-gray-200 border-b border-gray-600/30">Required Forms</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="divide-y divide-gray-600/20">
@@ -594,7 +594,7 @@
                                 </div>
                                 <!-- Calculate Button -->
                                 <div>
-                                    <button id="calculatePremiumBtn" class="btn-primary w-full py-3 rounded-xl font-semibold text-sm">🧮 Calculate Premium</button>
+                                    <button id="calculatePremiumBtn" class="btn-primary w-full py-3 rounded-xl font-semibold text-sm">Calculate Premium</button>
                                 </div>
                                 <!-- Results -->
                                 <div id="premiumResult" class="hidden space-y-4 p-4 bg-gray-900/40 rounded-xl border border-gray-700/40">
@@ -636,7 +636,7 @@
                 pauseOnBlur: true,
                 particles: {
                     number: {
-                        value: 120,
+                        value: 80,
                         density: {
                             enable: true,
                             area: 800
@@ -697,7 +697,7 @@
                         options: {
                             particles: {
                                 number: {
-                                    value: 60
+                                    value: 40
                                 },
                                 links: {
                                     distance: 70

@@ -126,7 +126,7 @@
                                 <input type="checkbox" data-index="${index}" class="checkbox-modern mr-3" ${todo.completed ? 'checked' : ''}>
                                 <span class="font-medium text-gray-300 ${todo.completed ? 'line-through' : ''}">${todo.text}</span>
                             </div>
-                            <button data-index="${index}" class="btn-danger text-xs px-2 py-1 rounded-md">🗑️</button>
+                            <button data-index="${index}" class="btn-danger text-xs px-2 py-1 rounded-md">[X]</button>
                         `;
                         todoList.appendChild(li);
                     });
@@ -519,7 +519,7 @@
                     <td class="px-6 py-4 font-semibold text-gray-300">${issue.length > 50 ? issue.substring(0, 50) + '...' : issue}</td>
                     <td class="px-6 py-4">
                         <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="removeCompletedSpecialRow(this)">
-                            🗑️ Remove
+                            Remove
                         </button>
                     </td>
                 `;
@@ -577,7 +577,7 @@
                         <td class="px-6 py-4 font-semibold text-gray-300">${issue.length > 50 ? issue.substring(0, 50) + '...' : issue}</td>
                         <td class="px-6 py-4">
                             <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="event.stopPropagation(); removeSpecialRow(this)">
-                                🗑️ Remove
+                                Remove
                             </button>
                         </td>
                     `;
@@ -596,7 +596,7 @@
                         <td class="px-6 py-4 font-semibold text-gray-300">${issue.length > 50 ? issue.substring(0, 50) + '...' : issue}</td>
                         <td class="px-6 py-4">
                             <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="event.stopPropagation(); removeSpecialRow(this)">
-                                🗑️ Remove
+                                Remove
                             </button>
                         </td>
                     `;
@@ -1000,7 +1000,7 @@
                         <td class="px-6 py-4 font-semibold text-gray-300">${new Date().toLocaleDateString()}</td>
                         <td class="px-6 py-4">
                             <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="removeCompletedRow(this)">
-                                🗑️ Remove
+                                Remove
                             </button>
                         </td>
                     `;
@@ -1040,7 +1040,7 @@
 
 
             if (!policyNo || !name || !selectedType) {
-                showToast('⚠️ Please fill basic claim information first.');
+                showToast('Please fill basic claim information first.');
                 return;
             }
 
@@ -1095,7 +1095,7 @@
                     <td class="px-6 py-4 font-semibold text-gray-300">${stage}</td>
                     <td class="px-6 py-4">
                         <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="event.stopPropagation(); removeRow(this)">
-                            🗑️ Remove
+                            Remove
                         </button>
                     </td>
                 `;
@@ -1114,7 +1114,7 @@
                     <td class="px-6 py-4 font-semibold text-gray-300">${stage}</td>
                     <td class="px-6 py-4">
                         <button class="btn-danger px-4 py-2 rounded-lg text-sm font-bold" onclick="event.stopPropagation(); removeRow(this)">
-                            🗑️ Remove
+                            Remove
                         </button>
                     </td>
                 `;
@@ -1125,7 +1125,7 @@
 
             saveToStorage();
 
-            showToast('💾 Progress saved successfully!');
+            showToast('Progress saved successfully!');
             deathClaimForm.classList.add('hidden');
             resetForm();
         });
