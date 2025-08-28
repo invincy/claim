@@ -203,7 +203,7 @@ input[type="checkbox"]:checked + .theme-switch-label::before {
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.7), 0 0 20px rgba(0, 123, 255, 0.4);
 }
 
-    }
+    
 
 input[type="checkbox"]:checked + .theme-switch-label::before {
     background-color: #55c0ff;
