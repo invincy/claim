@@ -1,19 +1,3 @@
-
-Gemini
-What can Gemini do
-in Google Drive
-Summarize a topic
-based on files in my Drive
-Summarize a folder
-in my Drive
-Sales pitch ideator
-Create compelling sales pitches that resonate with your audience and drive conversions.
-Learning coach
-Here to help you learn and practice new concepts. Tell me what you'd like to learn, and I'll help you get started.
-Sentiment analyzer
-Analyze customer feedback to reveal trends and make recommendations.
-Your Gems will appear across Workspace
-Gemini in Workspace can make mistakes, so double-check responses. Learn more
         // Create floating particles
 
         function createParticles() {
@@ -1244,3 +1228,4 @@ Gemini in Workspace can make mistakes, so double-check responses. Learn more
         addSearchFunctionality('deathClaimSearch', 'activeDeathClaimsTable', '— No claims match your search', '— No active death claims');
         addSearchFunctionality('specialCaseSearch', 'activeSpecialCasesTable', '— No special cases match your search', '— No active special cases');
     });
+
