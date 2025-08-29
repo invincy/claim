@@ -1,3 +1,19 @@
+
+Gemini
+What can Gemini do
+in Google Drive
+Summarize a topic
+based on files in my Drive
+Summarize a folder
+in my Drive
+Sales pitch ideator
+Create compelling sales pitches that resonate with your audience and drive conversions.
+Learning coach
+Here to help you learn and practice new concepts. Tell me what you'd like to learn, and I'll help you get started.
+Sentiment analyzer
+Analyze customer feedback to reveal trends and make recommendations.
+Your Gems will appear across Workspace
+Gemini in Workspace can make mistakes, so double-check responses. Learn more
         // Create floating particles
 
         function createParticles() {
@@ -184,17 +200,9 @@
 
                     // Step 1: Mode Rebate
                     let modeRebateFactor = 1;
-                     if (plan === '179') {
-                        if (mode === 'YLY') {
-                        modeRebateFactor = 0.98;
-                        breakdown.push(`Mode Rebate (YLY 2%): ${tabularPremium.toFixed(2)} * 0.98 = ${(tabularPremium * 0.98).toFixed(2)}`);
-                    } else if (mode === 'HLY') {
-                        modeRebateFactor = 0.99;
-                        breakdown.push(`Mode Rebate (HLY 1%): ${tabularPremium.toFixed(2)} * 0.99 = ${(tabularPremium * 0.99).toFixed(2)}`);
-                    }
-                     }else {
-                         if (mode === 'YLY') {
+                    if (mode === 'YLY') {
                         modeRebateFactor = 0.97;
+                        breakdown.push(`Mode Rebate (YLY 3%): ${tabularPremium.toFixed(2)} * 0.97 = ${(tabularPremium * 0.97).toFixed(2)}`);
                     } else if (mode === 'HLY') {
                         modeRebateFactor = 0.985;
                         breakdown.push(`Mode Rebate (HLY 1.5%): ${tabularPremium.toFixed(2)} * 0.985 = ${(tabularPremium * 0.985).toFixed(2)}`);
