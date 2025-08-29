@@ -148,8 +148,6 @@ body{
 .text-white {
     color: #333333;
 }
-
-/* Basic switch styling */
 .theme-switch-label {
     display: inline-block;
     height: 24px;
