@@ -183,21 +183,21 @@
                     let rate = tabularPremium;
 
                     // Step 1: Mode Rebate
-                    let modeRebateFactor = 1;
-                    if (mode === 'YLY') {
-                        modeRebateFactor = 0.97;
-                        if (plan === '179'){
-                            modeRebateFactor = 0.98;
-                        }
-                        breakdown.push(`Mode Rebate (YLY 3%): ${tabularPremium.toFixed(2)} * 0.97 = ${(tabularPremium * 0.97).toFixed(2)}`);
-                    } else if (mode === 'HLY') {
-                        modeRebateFactor = 0.985;
-                         if (plan === '179'){
-                            modeRebateFactor = 0.99;
-                        }
-                        breakdown.push(`Mode Rebate (HLY 1.5%): ${tabularPremium.toFixed(2)} * 0.985 = ${(tabularPremium * 0.985).toFixed(2)}`);
+nm                    const rebateConfig = {
+                        'YLY': { default: { factor: 0.97, text: '3%' }, '179': { factor: 0.98, text: '2%' } },
+                        'HLY': { default: { factor: 0.985, text: '1.5%' }, '179': { factor: 0.99, text: '1%' } }
+                    };
 
+                    let modeRebateFactor = 1.0;
+                    const rebateInfo = rebateConfig[mode];
 
+                    if (rebateInfo) {
+                        const config = rebateInfo[plan] || rebateInfo.default;
+                        modeRebateFactor = config.factor;
+                        if (modeRebateFactor !== 1) {
+                            const calculatedRebate = (tabularPremium * modeRebateFactor).toFixed(2);
+                            breakdown.push(`Mode Rebate (${mode} ${config.text}): ${tabularPremium.toFixed(2)} * ${config.factor} = ${calculatedRebate}`);
+                        }
                     }
                     rate *= modeRebateFactor;
 
