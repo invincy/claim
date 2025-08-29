@@ -724,10 +724,13 @@
             document.getElementById('specialType').value = type;
             
             // Restore full issue text and resolved status from saved data
+
             if (savedSpecialCases[policyNo]) {
+                const specialCaseData = savedSpecialCases[policyNo];
                 document.getElementById('specialIssue').value = savedSpecialCases[policyNo].issue;
                 document.getElementById('specialResolved').checked = savedSpecialCases[policyNo].resolved;
-            } else {
+                document.getElementById('specialName').value = specialCaseData.name;
+                document.getElementById('specialType').value = specialCaseData.type;
                 document.getElementById('specialIssue').value = issue;
                 document.getElementById('specialResolved').checked = false;
             }
